@@ -56,6 +56,71 @@ $('.example21-t-2').on('click', function () {
 /**
  * Lightslider
  */
+$('#salones-slider').lightSlider({
+        item:9,
+        loop:false,
+        slideMove:2,
+        easing: 'cubic-bezier(0.25, 0, 0.25, 1)',
+        speed:600,
+        pager:false,
+        responsive : [
+            {
+                breakpoint:1300,
+                settings: {
+                    item:8,
+                    slideMove:2,
+                    slideMargin:6,
+                  }
+            },
+            {
+                breakpoint:1120,
+                settings: {
+                    item:7,
+                    slideMove:1,
+                    slideMargin:6,
+                  }
+            },
+            {
+                breakpoint:970,
+                settings: {
+                    item:6,
+                    slideMove:1,
+                    slideMargin:6,
+                  }
+            },
+            {
+                breakpoint:800,
+                settings: {
+                    item:5,
+                    slideMove:1,
+                    slideMargin:6,
+                  }
+            },
+            {
+                breakpoint:700,
+                settings: {
+                    item:4,
+                    slideMove:1,
+                    slideMargin:6,
+                  }
+            },
+            {
+                breakpoint:480,
+                settings: {
+                    item:3,
+                    slideMove:1
+                  }
+            },
+            {
+                breakpoint:280,
+                settings: {
+                    item:1,
+                    slideMove:1
+                  }
+            }
+        ]
+    });
+
  var waSlider = $('#clients-slider').lightSlider({
   autoWidth:true,
   auto:true,

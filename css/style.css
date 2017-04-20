@@ -37,6 +37,9 @@ a:hover {
 .form-search .btn-search:hover {
   background-color: #9d001f;
 }
+.clear-padd {
+  padding: 0px;
+}
 .clear-padd-l {
   padding-right: 0px;
 }
@@ -252,6 +255,13 @@ a:hover {
 .cont-confirmacion {
   padding: 50px;
 }
+.linea-top {
+  height: 8px;
+  background: url('../images/bg-line.jpg') repeat top center;
+}
+.logo img {
+  margin-top: -30px;
+}
 header {
   margin-top: 20px;
 }
@@ -402,25 +412,28 @@ header .top-sect .cont-redes .btn-facebook:hover {
 }
 .cont_slide_1 .carousel-control .glyphicon-chevron-left,
 .cont_slide_1 .carousel-control .glyphicon-chevron-right {
-  background-color: rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.9);
-  line-height: 46px;
+  /*background-color: rgba(0, 0, 0, 0.8);
+			border: 1px solid rgba(0, 0, 0, 0.9);*/
+  line-height: 52px;
   font-family: FontAwesome;
-  width: 40px;
-  height: 46px;
-  font-size: 22px;
+  width: 60px;
+  height: 52px;
+  font-size: 32px;
+  font-weight: 100;
 }
 .cont_slide_1 .carousel-control .glyphicon-chevron-left {
   left: 10px;
 }
 .cont_slide_1 .carousel-control .glyphicon-chevron-left:before {
   content: "\f053";
+  color: #3e3e3d;
 }
 .cont_slide_1 .carousel-control .glyphicon-chevron-right {
   right: 10px;
 }
 .cont_slide_1 .carousel-control .glyphicon-chevron-right:before {
   content: "\f054";
+  color: #3e3e3d;
 }
 .cont_slide_2 {
   margin-bottom: 15px;
@@ -429,25 +442,50 @@ header .top-sect .cont-redes .btn-facebook:hover {
 .content-slider-clientes li {
   padding: 0 5px;
 }
-.clients-box {
-  background: #ededed;
+.logos-box {
+  /*background: #ededed;*/
   padding: 30px 0px;
 }
-.clients-box h3 {
-  font-size: 26px;
-  /*line-height: 1.11111111;
-		letter-spacing: -1px;*/
-  font-family: 'Raleway', sans-serif;
-  font-weight: 900;
-  margin: 0;
-  text-transform: uppercase;
+.logos-box li.logo-item {
   text-align: center;
-  color: #B32944;
 }
-.clients-box h3 small {
-  font-weight: 300;
-  font-size: inherit;
-  color: #B32944;
+.logos-box .lSAction a {
+  width: 20px;
+  display: block;
+  top: 50%;
+  height: 32px;
+  /*background-image: url(../img/controls.png);*/
+  background: none;
+  cursor: pointer;
+  position: absolute;
+  z-index: 99;
+  margin-top: -16px;
+  opacity: 0.5;
+  -webkit-transition: opacity 0.35s linear 0s;
+  transition: opacity 0.35s linear 0s;
+  font-family: FontAwesome;
+  font-size: 20px;
+  color: #3e3e3d;
+}
+.logos-box .lSAction .lSPrev {
+  /*content: "\f053";*/
+  left: 0px;
+}
+.logos-box .lSAction .lSPrev:before {
+  content: "\f053";
+  color: #3e3e3d;
+}
+.logos-box .lSAction .lSNext {
+  right: 0px;
+}
+.logos-box .lSAction .lSNext:before {
+  content: "\f054";
+  color: #3e3e3d;
+}
+.logos-box .line-logos {
+  height: 1px;
+  background: #3e3e3d;
+  margin-bottom: 30px;
 }
 .cont-productos .bg_categoria {
   background: #53984C !important;

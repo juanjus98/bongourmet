@@ -110,7 +110,7 @@ $tag_image = $head_info['image'];
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div class="text-center">
-            <a href="<?php echo base_url();?>">
+            <a href="<?php echo base_url();?>" class="logo">
               <img src="<?php echo base_url('images/logo.png');?>" alt="Mueblería">
             </a>
             </div>
@@ -125,70 +125,55 @@ $tag_image = $head_info['image'];
     <?php echo @$template['body']; ?>
 
     <footer>
-      <div class="clients-box">
+      <div class="logos-box">
         <div class="container-fluid">
           <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <!-- <h3>CONFIAN <small>EN NOSOTROS:</small></h3> -->
-          <ul id="clients-slider" class="content-slider-clientes">
-                <li>
-                    <a href="#" title="titulo">
-                      <img src="<?php echo base_url('images/cli-1.jpg');?>" alt="titulo">
+          <div class="line-logos"></div>
+          <ul id="salones-slider">
+                <li class="logo-item">
+                    <a href="#" class="hvr-wobble-horizontal" title="titulo">
+                      <img src="<?php echo base_url('images/salon-1.jpg');?>" alt="titulo">
                     </a>
                 </li>
-                <li>
-                    <a href="#" title="titulo">
-                      <img src="<?php echo base_url('images/cli-2.jpg');?>" alt="titulo">
+                <li class="logo-item">
+                    <a href="#" class="hvr-wobble-horizontal" title="titulo">
+                      <img src="<?php echo base_url('images/salon-2.jpg');?>" alt="titulo">
                     </a>
                 </li>
-                <li>
-                    <a href="#" title="titulo">
-                      <img src="<?php echo base_url('images/cli-3.jpg');?>" alt="titulo">
+                <li class="logo-item">
+                    <a href="#" class="hvr-wobble-horizontal" title="titulo">
+                      <img src="<?php echo base_url('images/salon-3.jpg');?>" alt="titulo">
                     </a>
                 </li>
-                <li>
-                    <a href="#" title="titulo">
-                      <img src="<?php echo base_url('images/cli-4.jpg');?>" alt="titulo">
+                <li class="logo-item">
+                    <a href="#" class="hvr-wobble-horizontal" title="titulo">
+                      <img src="<?php echo base_url('images/salon-4.jpg');?>" alt="titulo">
                     </a>
                 </li>
-                <li>
-                    <a href="#" title="titulo">
-                      <img src="<?php echo base_url('images/cli-5.jpg');?>" alt="titulo">
+                <li class="logo-item">
+                    <a href="#" class="hvr-wobble-horizontal" title="titulo">
+                      <img src="<?php echo base_url('images/salon-5.jpg');?>" alt="titulo">
                     </a>
                 </li>
-                <li>
-                    <a href="#" title="titulo">
-                      <img src="<?php echo base_url('images/cli-6.jpg');?>" alt="titulo">
+                <li class="logo-item">
+                    <a href="#" class="hvr-wobble-horizontal" title="titulo">
+                      <img src="<?php echo base_url('images/salon-6.jpg');?>" alt="titulo">
                     </a>
                 </li>
-                <li>
-                    <a href="#" title="titulo">
-                      <img src="<?php echo base_url('images/cli-1.jpg');?>" alt="titulo">
+                <li class="logo-item">
+                    <a href="#" class="hvr-wobble-horizontal" title="titulo">
+                      <img src="<?php echo base_url('images/salon-7.jpg');?>" alt="titulo">
                     </a>
                 </li>
-                <li>
-                    <a href="#" title="titulo">
-                      <img src="<?php echo base_url('images/cli-2.jpg');?>" alt="titulo">
+                <li class="logo-item">
+                    <a href="#" class="hvr-wobble-horizontal" title="titulo">
+                      <img src="<?php echo base_url('images/salon-8.jpg');?>" alt="titulo">
                     </a>
                 </li>
-                <li>
-                    <a href="#" title="titulo">
-                      <img src="<?php echo base_url('images/cli-3.jpg');?>" alt="titulo">
-                    </a>
-                </li>
-                <li>
-                    <a href="#" title="titulo">
-                      <img src="<?php echo base_url('images/cli-4.jpg');?>" alt="titulo">
-                    </a>
-                </li>
-                <li>
-                    <a href="#" title="titulo">
-                      <img src="<?php echo base_url('images/cli-5.jpg');?>" alt="titulo">
-                    </a>
-                </li>
-                <li>
-                    <a href="#" title="titulo">
-                      <img src="<?php echo base_url('images/cli-6.jpg');?>" alt="titulo">
+                <li class="logo-item">
+                    <a href="#" class="hvr-wobble-horizontal" title="titulo">
+                      <img src="<?php echo base_url('images/salon-9.jpg');?>" alt="titulo">
                     </a>
                 </li>
             </ul>
@@ -200,7 +185,7 @@ $tag_image = $head_info['image'];
     </footer>    
 
     <div class="clearfix"></div>
-    <span class="button js-toggle-main-menu pull-right"><i class="fa fa-bars"></i> <span class="text">Menu</span></span>
+    <!-- <span class="button js-toggle-main-menu pull-right"><i class="fa fa-bars"></i> <span class="text">Menu</span></span> -->
   </div><!--//canvas="container"-->
 
   <script src="<?php echo base_url('plugins/jquery/jquery-3.1.1.min.js'); ?>"></script>

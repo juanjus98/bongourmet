@@ -9,19 +9,21 @@
 		background:transparent;
 
 		.glyphicon-chevron-left, .glyphicon-chevron-right {
-			background-color: rgba(0,0,0,.80);
-		    border: 1px solid rgba(0,0,0,.90);
-		    line-height: 46px;
-		    font-family: FontAwesome;
-		    width: 40px;
-		    height: 46px;
-		    font-size: 22px;
+			/*background-color: rgba(0, 0, 0, 0.8);
+			border: 1px solid rgba(0, 0, 0, 0.9);*/
+			line-height: 52px;
+			font-family: FontAwesome;
+			width: 60px;
+			height: 52px;
+			font-size: 32px;
+			font-weight: 100;
 		}
 
 		.glyphicon-chevron-left{
 			left:10px;
 			&:before {
 				content: "\f053";
+				color: @color-text-0;
 			}
 		}
 
@@ -29,6 +31,7 @@
 			right: 10px;
 			&:before {
 				content: "\f054";
+				color: @color-text-0;
 			}
 		}
 	}
