@@ -64,60 +64,69 @@ $tag_image = $head_info['image'];
 
 </head>
 <body>
+  <span class="button js-toggle-main-menu pull-left">
+    <i class="fa fa-bars"></i> <span class="text">Menu</span>
+  </span>
   <!--MENU-->
   <div off-canvas="main-menu left shift">
-    <ul class="menu small">
+    <?php echo crear_menu_responsive(wamenu(), $active_link);?>
+    <!-- <ul class="menu small">
       <li><a href="/slidebars/"><span class="fa fa-home"></span> Home</a></li>
       <li><a href="/slidebars/features/"><span class="fa fa-check-circle"></span> Features</a></li>
       <li><a href="/slidebars/downloads/"><span class="fa fa-cloud-download"></span> Downloads</a></li>
       <li><a href="#" class="js-toggle-demos-menu"><span class="fa fa-eye"></span> Demos</a></li>
       <li><a href="#" class="js-toggle-help-menu"><span class="fa fa-life-ring"></span> Help Center</a></li>
       <li><a href="/slidebars/compatibility/"><span class="fa fa-info-circle"></span> Compatibility</a></li>
-      <li><a href="https://github.com/adchsm/Slidebars" class="ga-external-github"><span class="fa fa-github"></span> Slidebars on GitHub</a></li>
-      <li><a href="#" class="js-toggle-author-menu"><span class="fa fa-user"></span> About the Author</a></li>
-      <li><a href="#" class="js-close-any"><span class="fa fa-times-circle"></span> Close</a></li>
-    </ul>
+      <li>
+        <ul>
+          <li><a href="https://github.com/adchsm/Slidebars" class="ga-external-github"><span class="fa fa-github"></span> Slidebars on GitHub</a></li>
+          <li><a href="#" class="js-toggle-author-menu"><span class="fa fa-user"></span> About the Author</a></li>
+          <li><a href="#" class="js-close-any"><span class="fa fa-times-circle"></span> Close</a></li>
+        </ul>
+      </li>
+    </ul> -->
   </div>
   <!--MENU-->
 
   <div canvas="container" class="page">
     <header>
-    <div class="container-fluid top-sect">
-      <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-        <nav class="navbar navbar-default navbar-wa">
-          <!-- <div class="container-fluid"> -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <?php
+      <div class="container-fluid top-sect">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+
+            <nav class="navbar navbar-default navbar-wa">
+              <!-- <div class="container-fluid"> -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <?php
                 echo crear_menu(wamenu(), $active_link);
-              ?>
-            </div><!-- /.navbar-collapse -->
-          <!-- </div>/.container -->
-        </nav>
-      </div>
+                ?>
+              </div><!-- /.navbar-collapse -->
+              <!-- </div>/.container -->
+            </nav>
+          </div>
 
-      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-        <div class="cont-redes">
-          <a href="#" class="btn-facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-        </div>
-        <div class="help-box text-right">
-          <a href="callto:#">(54)270528</a>
-        </div>
-      </div>
-
-      </div>
-
-      <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div class="text-center">
-            <a href="<?php echo base_url();?>" class="logo">
-              <img src="<?php echo base_url('images/logo.png');?>" alt="Mueblería">
-            </a>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="cont-redes">
+              <a href="#" class="btn-facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
             </div>
-        </div>
-      </div>
+            <div class="help-box text-right">
+              <a href="callto:#">(54)270528</a>
+            </div>
+          </div>
 
-    </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="text-center">
+              <a href="<?php echo base_url();?>" class="logo">
+                <img src="<?php echo base_url('images/logo.png');?>" alt="Mueblería">
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
 
 
     </header>
@@ -128,64 +137,61 @@ $tag_image = $head_info['image'];
       <div class="logos-box">
         <div class="container-fluid">
           <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <div class="line-logos"></div>
-          <ul id="salones-slider">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div class="line-logos"></div>
+              <ul id="salones-slider">
                 <li class="logo-item">
-                    <a href="#" class="hvr-wobble-horizontal" title="titulo">
-                      <img src="<?php echo base_url('images/salon-1.png');?>" alt="titulo">
-                    </a>
+                  <a href="#" class="hvr-wobble-horizontal" title="titulo">
+                    <img src="<?php echo base_url('images/salon-1.png');?>" alt="titulo">
+                  </a>
                 </li>
                 <li class="logo-item">
-                    <a href="#" class="hvr-wobble-horizontal" title="titulo">
-                      <img src="<?php echo base_url('images/salon-2.png');?>" alt="titulo">
-                    </a>
+                  <a href="#" class="hvr-wobble-horizontal" title="titulo">
+                    <img src="<?php echo base_url('images/salon-2.png');?>" alt="titulo">
+                  </a>
                 </li>
                 <li class="logo-item">
-                    <a href="#" class="hvr-wobble-horizontal" title="titulo">
-                      <img src="<?php echo base_url('images/salon-3.png');?>" alt="titulo">
-                    </a>
+                  <a href="#" class="hvr-wobble-horizontal" title="titulo">
+                    <img src="<?php echo base_url('images/salon-3.png');?>" alt="titulo">
+                  </a>
                 </li>
                 <li class="logo-item">
-                    <a href="#" class="hvr-wobble-horizontal" title="titulo">
-                      <img src="<?php echo base_url('images/salon-4.png');?>" alt="titulo">
-                    </a>
+                  <a href="#" class="hvr-wobble-horizontal" title="titulo">
+                    <img src="<?php echo base_url('images/salon-4.png');?>" alt="titulo">
+                  </a>
                 </li>
                 <li class="logo-item">
-                    <a href="#" class="hvr-wobble-horizontal" title="titulo">
-                      <img src="<?php echo base_url('images/salon-5.png');?>" alt="titulo">
-                    </a>
+                  <a href="#" class="hvr-wobble-horizontal" title="titulo">
+                    <img src="<?php echo base_url('images/salon-5.png');?>" alt="titulo">
+                  </a>
                 </li>
                 <li class="logo-item">
-                    <a href="#" class="hvr-wobble-horizontal" title="titulo">
-                      <img src="<?php echo base_url('images/salon-6.png');?>" alt="titulo">
-                    </a>
+                  <a href="#" class="hvr-wobble-horizontal" title="titulo">
+                    <img src="<?php echo base_url('images/salon-6.png');?>" alt="titulo">
+                  </a>
                 </li>
                 <li class="logo-item">
-                    <a href="#" class="hvr-wobble-horizontal" title="titulo">
-                      <img src="<?php echo base_url('images/salon-7.png');?>" alt="titulo">
-                    </a>
+                  <a href="#" class="hvr-wobble-horizontal" title="titulo">
+                    <img src="<?php echo base_url('images/salon-7.png');?>" alt="titulo">
+                  </a>
                 </li>
                 <li class="logo-item">
-                    <a href="#" class="hvr-wobble-horizontal" title="titulo">
-                      <img src="<?php echo base_url('images/salon-8.png');?>" alt="titulo">
-                    </a>
+                  <a href="#" class="hvr-wobble-horizontal" title="titulo">
+                    <img src="<?php echo base_url('images/salon-8.png');?>" alt="titulo">
+                  </a>
                 </li>
                 <li class="logo-item">
-                    <a href="#" class="hvr-wobble-horizontal" title="titulo">
-                      <img src="<?php echo base_url('images/salon-9.png');?>" alt="titulo">
-                    </a>
+                  <a href="#" class="hvr-wobble-horizontal" title="titulo">
+                    <img src="<?php echo base_url('images/salon-9.png');?>" alt="titulo">
+                  </a>
                 </li>
-            </ul>
+              </ul>
             </div>
           </div>
         </div>
       </div>
 
     </footer>    
-
-    <div class="clearfix"></div>
-    <!-- <span class="button js-toggle-main-menu pull-right"><i class="fa fa-bars"></i> <span class="text">Menu</span></span> -->
   </div><!--//canvas="container"-->
 
   <script src="<?php echo base_url('plugins/jquery/jquery-3.1.1.min.js'); ?>"></script>

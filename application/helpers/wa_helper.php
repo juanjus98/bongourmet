@@ -46,7 +46,7 @@ if (!function_exists('wamenu')) {
     function wamenu() {
         $CI = & get_instance();
         //Categorías
-        /*$result = $CI->db->select("t1.*")
+        $result = $CI->db->select("t1.*")
         ->where("t1.estado !=", 0)
         ->where("t1.parent_id", 0)
         ->order_by("t1.agregar","Desc")
@@ -54,7 +54,7 @@ if (!function_exists('wamenu')) {
         ->result_array();
         foreach ($result as $item) {
             $arr_menu['c/' . $item['url_key']] = $item['nombre'];
-        }*/
+        }
 
         $menu = array(
             'inicio' => 'Inicio',
@@ -62,7 +62,7 @@ if (!function_exists('wamenu')) {
             /*'Productos' => $arr_menu,*/
             'contactanos' => 'Contactanos',
             'galeria' => 'Galería',
-            'salones' => 'Salones',
+            'salones' => $arr_menu,
         );
 
         return $menu;
@@ -82,6 +82,30 @@ if (!function_exists('crear_menu')) {
             if (is_array($value)) {
                 $nav .= '<li class="dropdown '.$class_active.'"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">' . $key . ' <span class="caret"></span></a>' . PHP_EOL;
                 $nav .= '<ul class="dropdown-menu">' . PHP_EOL . crear_menu($value) . PHP_EOL . '</ul>';
+                $nav .= '</li>' . PHP_EOL;
+            } else {
+                $nav .= '<li class="'.$class_active.'"><a href="' . base_url($key) .'">' . $value . '</a></li>' . PHP_EOL;
+            }
+        }
+
+        $nav .= '</ul>';
+        return $nav;
+    }
+
+}
+
+if (!function_exists('crear_menu_responsive')) {
+
+    function crear_menu_responsive($menu, $active_link) {
+        $nav = '<ul class="menu small">';
+        foreach ($menu as $key => $value) {
+            $class_active = "";
+            if ($key == $active_link) {
+                $class_active = "active";
+            }
+            if (is_array($value)) {
+                $nav .= '<li class="dropdown '.$class_active.'"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">' . $key . ' <span class="caret"></span></a>' . PHP_EOL;
+                $nav .= '<ul class="dropdown-menu">' . PHP_EOL . crear_menu_responsive($value) . PHP_EOL . '</ul>';
                 $nav .= '</li>' . PHP_EOL;
             } else {
                 $nav .= '<li class="'.$class_active.'"><a href="' . base_url($key) .'">' . $value . '</a></li>' . PHP_EOL;
