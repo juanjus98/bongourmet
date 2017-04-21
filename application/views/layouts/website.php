@@ -133,47 +133,47 @@ $tag_image = $head_info['image'];
           <ul id="salones-slider">
                 <li class="logo-item">
                     <a href="#" class="hvr-wobble-horizontal" title="titulo">
-                      <img src="<?php echo base_url('images/salon-1.jpg');?>" alt="titulo">
+                      <img src="<?php echo base_url('images/salon-1.png');?>" alt="titulo">
                     </a>
                 </li>
                 <li class="logo-item">
                     <a href="#" class="hvr-wobble-horizontal" title="titulo">
-                      <img src="<?php echo base_url('images/salon-2.jpg');?>" alt="titulo">
+                      <img src="<?php echo base_url('images/salon-2.png');?>" alt="titulo">
                     </a>
                 </li>
                 <li class="logo-item">
                     <a href="#" class="hvr-wobble-horizontal" title="titulo">
-                      <img src="<?php echo base_url('images/salon-3.jpg');?>" alt="titulo">
+                      <img src="<?php echo base_url('images/salon-3.png');?>" alt="titulo">
                     </a>
                 </li>
                 <li class="logo-item">
                     <a href="#" class="hvr-wobble-horizontal" title="titulo">
-                      <img src="<?php echo base_url('images/salon-4.jpg');?>" alt="titulo">
+                      <img src="<?php echo base_url('images/salon-4.png');?>" alt="titulo">
                     </a>
                 </li>
                 <li class="logo-item">
                     <a href="#" class="hvr-wobble-horizontal" title="titulo">
-                      <img src="<?php echo base_url('images/salon-5.jpg');?>" alt="titulo">
+                      <img src="<?php echo base_url('images/salon-5.png');?>" alt="titulo">
                     </a>
                 </li>
                 <li class="logo-item">
                     <a href="#" class="hvr-wobble-horizontal" title="titulo">
-                      <img src="<?php echo base_url('images/salon-6.jpg');?>" alt="titulo">
+                      <img src="<?php echo base_url('images/salon-6.png');?>" alt="titulo">
                     </a>
                 </li>
                 <li class="logo-item">
                     <a href="#" class="hvr-wobble-horizontal" title="titulo">
-                      <img src="<?php echo base_url('images/salon-7.jpg');?>" alt="titulo">
+                      <img src="<?php echo base_url('images/salon-7.png');?>" alt="titulo">
                     </a>
                 </li>
                 <li class="logo-item">
                     <a href="#" class="hvr-wobble-horizontal" title="titulo">
-                      <img src="<?php echo base_url('images/salon-8.jpg');?>" alt="titulo">
+                      <img src="<?php echo base_url('images/salon-8.png');?>" alt="titulo">
                     </a>
                 </li>
                 <li class="logo-item">
                     <a href="#" class="hvr-wobble-horizontal" title="titulo">
-                      <img src="<?php echo base_url('images/salon-9.jpg');?>" alt="titulo">
+                      <img src="<?php echo base_url('images/salon-9.png');?>" alt="titulo">
                     </a>
                 </li>
             </ul>

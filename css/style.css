@@ -256,8 +256,13 @@ a:hover {
   padding: 50px;
 }
 .linea-top {
-  height: 8px;
-  background: url('../images/bg-line.jpg') repeat top center;
+  height: 6px;
+  /*background: url('../images/bg-line.jpg') no-repeat top center;*/
+  background: url(../images/bg-line.jpg) no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 .logo img {
   margin-top: -30px;
@@ -406,6 +411,10 @@ header .top-sect .cont-redes .btn-facebook:hover {
   background: #fff;
   border: solid 1px #EAEAE1;
   padding: 0;
+}
+.cont_slide_1 .carousel-inner > .item > img,
+.cont_slide_1 .carousel-inner > .item > a > img {
+  width: 100%;
 }
 .cont_slide_1 .carousel-control {
   background: transparent;
