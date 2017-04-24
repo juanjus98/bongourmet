@@ -45,7 +45,7 @@ class Auth {
        'ingreso' => date("Y-m-d H:i:s"),
        'estado' => 'Logueado'
        );
-     $this->ci->db->insert('acceso', $data_insert);
+     $this->ci->db->insert('wa_acceso', $data_insert);
      $result['acceso_info'] = $data_insert;
      $result['authentication'] = TRUE;
      $this->ci->session->set_userdata('s_user_info', $result);
@@ -86,7 +86,7 @@ class Auth {
      'ingreso' => date("Y-m-d H:i:s"),
      'estado' => 'Deslogueado'
      );
-   $this->ci->db->insert('acceso', $data_insert);
+   $this->ci->db->insert('wa_acceso', $data_insert);
    $this->ci->session->sess_destroy();
    redirect($this->ci->config->item('url_logout', 'auth'));
  }

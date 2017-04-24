@@ -59,9 +59,9 @@ $route['c/(:any)'] = 'paginas/productos/$1';
 $route['c/(:any)/(:num)'] = 'paginas/productos/$1/$2'; //Paginación
 $route['p/(:any)'] = 'paginas/detalle_producto/$1'; //Detalles de un producto
 
-/*$route['productos'] = 'paginas/productos';*/
-/*$route['detalle'] = 'paginas/detalle_producto';*/
-
+$route['contactanos'] = 'paginas/contactanos';
+$route['salones'] = 'paginas/salones';
+$route['salon'] = 'paginas/salon';
 
 
 /**
@@ -93,4 +93,4 @@ $route['waadmin/login'] = "waadmin/waauth";
 $route['waadmin/salir'] = "waadmin/waauth/logout";
 $route['waadmin/perfil/(:any)'] = "waadmin/Waauth/perfil";
 
-$route['waadmin/condominio/(:any)/(:num)'] = "waadmin/condominios/editar/$1/$2";
+$route['waadmin/website/(:any)/(:num)'] = "waadmin/website/editar/$1/$2";

@@ -206,11 +206,11 @@ img {
   background-color: #53984C !important;
 }
 .bg-header-login {
-  background: #B32944 !important;
+  background: #005C97 !important;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to left, #B32944, #CA4C65) !important;
+  background: -webkit-linear-gradient(to left, #005C97, #363795) !important;
   /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, #B32944, #CA4C65) !important;
+  background: linear-gradient(to left, #005C97, #363795) !important;
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 .bg-green {
@@ -2711,11 +2711,11 @@ Component: timeline
 /* skin-wa navbar */
 .skin-wa .navbar {
   /*.navbar-variant(@light-blue);*/
-  background: #CA4C65;
+  background: #363795;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to left, #CA4C65, #B32944);
+  background: -webkit-linear-gradient(to left, #363795, #005C97);
   /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, #CA4C65, #B32944);
+  background: linear-gradient(to left, #363795, #005C97);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 .skin-wa .navbar .nav a {
@@ -2741,14 +2741,14 @@ Component: timeline
 }
 /* skin-wa logo */
 .skin-wa .logo {
-  background-color: #9e243c;
+  background-color: #004c7e;
   color: #f9f9f9;
 }
 .skin-wa .logo > a {
   color: #f9f9f9;
 }
 .skin-wa .logo:hover {
-  background: #9a233b;
+  background: #004978;
 }
 /* skin-wa content header */
 .skin-wa .right-side > .content-header {

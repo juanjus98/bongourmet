@@ -355,7 +355,63 @@ class Paginas extends CI_Controller {
         $this->template->build('paginas/confirmacion', $data);
       }
 
+
+    public function contactanos() {
+      $this->template->title('Contáctanos');
+      $data['active_link'] = "contactanos";
+
+      $data['website'] = $this->Inicio->get_website();
+      $data['head_info'] = head_info($data['website'],'home'); //siempre
+
+      //Categorías para carousel parent_id != 0, destacar=1
+      $data_crud['table'] = "categoria as t1";
+      $data_crud['columns'] = "t1.*";
+      $data_crud['where'] = array("t1.parent_id !=" => 0, "t1.destacar" => 1, "t1.estado !=" => 0);
+      $data_crud['order_by'] = "t1.orden Asc";
+      $data['categorias_carousel'] = $this->Crud->getRows($data_crud);
+
+
+      $this->template->build('paginas/contactanos', $data);
     }
+
+    public function salones() {
+      $this->template->title('Salones');
+      $data['active_link'] = "salones";
+      $data['footer_line'] = "salones";
+
+      $data['website'] = $this->Inicio->get_website();
+      $data['head_info'] = head_info($data['website'],'home'); //siempre
+
+      //Categorías para carousel parent_id != 0, destacar=1
+      $data_crud['table'] = "categoria as t1";
+      $data_crud['columns'] = "t1.*";
+      $data_crud['where'] = array("t1.parent_id !=" => 0, "t1.destacar" => 1, "t1.estado !=" => 0);
+      $data_crud['order_by'] = "t1.orden Asc";
+      $data['categorias_carousel'] = $this->Crud->getRows($data_crud);
+
+
+      $this->template->build('paginas/salones', $data);
+    }
+
+    public function salon() {
+      $this->template->title('Salon');
+      $data['active_link'] = "salones";
+
+      $data['website'] = $this->Inicio->get_website();
+      $data['head_info'] = head_info($data['website'],'home'); //siempre
+
+      //Categorías para carousel parent_id != 0, destacar=1
+      $data_crud['table'] = "categoria as t1";
+      $data_crud['columns'] = "t1.*";
+      $data_crud['where'] = array("t1.parent_id !=" => 0, "t1.destacar" => 1, "t1.estado !=" => 0);
+      $data_crud['order_by'] = "t1.orden Asc";
+      $data['categorias_carousel'] = $this->Crud->getRows($data_crud);
+
+
+      $this->template->build('paginas/salon', $data);
+    }
+
+}
 
     /* End of file categorias.php */
 /* Location: ./application/controllers/waadmin/categorias.php */
