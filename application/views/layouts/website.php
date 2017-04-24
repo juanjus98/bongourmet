@@ -45,7 +45,9 @@ $tag_image = $head_info['image'];
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 <![endif]-->
-<link rel="shortcut icon" href="<?php echo base_url('favicon.ico') ?>">
+<link rel="shortcut icon" href="<?php echo base_url('favicon.ico') ?>" type="image/x-icon">
+<link rel="icon" href="<?php echo base_url('favicon.ico') ?>" type="image/x-icon">
+
 <script type="text/javascript">var base_url='<?php echo base_url();?>';</script>
 <?php //echo notify();?>
 </head>
@@ -169,7 +171,7 @@ $tag_image = $head_info['image'];
   <script type="text/javascript" src="<?php echo base_url('js/bootstrap.min.js'); ?>"></script>
   <script type="text/javascript" src="<?php echo base_url('plugins/slidebars/slidebars.min.js'); ?>"></script>
   <script type="text/javascript" src="<?php echo base_url('plugins/lightslider/js/lightslider.js'); ?>"></script>
-  <script type="text/javascript" src="<?php echo base_url('plugins/elevatezoom/jquery.elevatezoom.js'); ?>"></script>
+  <!-- <script type="text/javascript" src="<?php echo base_url('plugins/elevatezoom/jquery.elevatezoom.js'); ?>"></script> -->
   <script type="text/javascript" src="<?php echo base_url('plugins/jquery-confirm/jquery-confirm.min.js'); ?>"></script>
   <script type="text/javascript" src="<?php echo base_url('plugins/formValidation/formValidation.js'); ?>"></script>
   <script type="text/javascript" src="<?php echo base_url('plugins/formValidation/framework/bootstrap.min.js'); ?>"></script>

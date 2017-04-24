@@ -307,7 +307,7 @@ $('.example21-t-2').on('click', function () {
   //Cargar iterms del carrito
   loadCartItems();
 
-  $('#zoom_01').elevateZoom({
+  /*$('#zoom_01').elevateZoom({
     tint:true, 
     tintColour:'#D7DCE0',
     gallery:'gallery_01', 
@@ -321,7 +321,7 @@ $('.example21-t-2').on('click', function () {
     lensFadeIn: 400,
     lensFadeOut: 400,
     easing : true
-  });
+  });*/
 
 /**
  * Lightslider

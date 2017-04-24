@@ -35,9 +35,9 @@ class Auth {
    ->where($this->ci->config->item('user_username_column', 'auth'), $data['usuario'])
    ->get($this->ci->config->item('user_table', 'auth'))
    ->row_array();
-   $sw=1;
-   if(!empty($this->ci->bcrypt->compare($data['contrasena'], $result['password']))){
-    /*if(!$sw){*/
+
+   $compare = $this->ci->bcrypt->compare($data['contrasena'], $result['password']);
+   if(!empty($compare)){
      unset($result['password']);
      $data_insert = array(
        'id_usuario' => $result['id_usuario'],
@@ -65,7 +65,8 @@ class Auth {
    ->where($this->ci->config->item('user_username_column', 'auth'), $data['usuario'])
    ->get($this->ci->config->item('user_table', 'auth'))
    ->row_array();
-   if(!empty($this->ci->bcrypt->compare($data['contrasena'], $result['password']))){
+   $compare = $this->ci->bcrypt->compare($data['contrasena'], $result['password']);
+   if(!empty($compare)){
      return TRUE;
    } else {
      return FALSE;
