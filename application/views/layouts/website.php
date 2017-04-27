@@ -3,6 +3,8 @@
  * Información del website
  */
 $website_info = $this->website_info;
+$telefono_1 = $website_info['telefono_1'];
+$url_facebook = 'https://www.facebook.com/' . $website_info['url_facebook'];
 /**
  * Preparar tags en header
  */
@@ -17,7 +19,7 @@ $tag_image = $head_info['image'];
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-  <title><?php echo $tag_title; ?></title>
+  <title><?php echo $retVal = (@$template['title'] != 'Inicio') ? @$template['title'] . ' - ' : ''; ?> <?php echo $tag_title; ?></title>
   <meta name="description" content="<?php echo $tag_description; ?>">
   <meta name="author" content="<?php echo base64_decode("d2ViQXB1LmNvbQ=="); ?>">
   <meta name="keywords" content="<?php echo strip_tags($head_info['keywords']); ?>">
@@ -32,7 +34,7 @@ $tag_image = $head_info['image'];
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url('plugins/slidebars/slidebars.min.css'); ?>">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/bootstrap.min.css'); ?>">
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/style.css'); ?>">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/style.min.css'); ?>">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/font-awesome.min.css'); ?>">
   <link rel="stylesheet" type="text/css"  href="<?php echo base_url('css/hover.min.css'); ?>"/>
   <link rel="stylesheet" type="text/css"  href="<?php echo base_url('plugins/lightslider/css/lightslider.css'); ?>"/>
@@ -49,7 +51,6 @@ $tag_image = $head_info['image'];
 <link rel="icon" href="<?php echo base_url('favicon.ico') ?>" type="image/x-icon">
 
 <script type="text/javascript">var base_url='<?php echo base_url();?>';</script>
-<?php //echo notify();?>
 </head>
 <body>
   <div class="responsive-menu-buttom">
@@ -86,18 +87,18 @@ $tag_image = $head_info['image'];
           </div>
           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             <div class="cont-redes">
-              <a href="#" class="btn-facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+              <a href="<?php echo $url_facebook ;?>" target="_blank" class="btn-facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
             </div>
             <div class="help-box text-right">
-              <a href="callto:(54)270528">(54)270528</a>
+              <a href="callto:<?php echo $telefono_1;?>"><?php echo $telefono_1;?></a>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div class="text-center">
-              <a href="<?php echo base_url();?>" class="logo">
-                <img src="<?php echo base_url('images/logo.png');?>" alt="Mueblería">
+              <a href="<?php echo base_url();?>" class="logo" title="<?php echo $tag_title;?>">
+                <img src="<?php echo base_url('images/logo.png');?>" alt="<?php echo $tag_title;?>">
               </a>
             </div>
           </div>
@@ -113,54 +114,26 @@ $tag_image = $head_info['image'];
               <?php
                 if(empty($footer_line)){ $footer_line = '';}
                 echo $linelogos = ($footer_line != 'salones') ? '<div class="line-logos"></div>' : '' ;
+                $productos_footer = productos_footer();
+              ?>
+              <?php
+              if(!empty($productos_footer)){
               ?>
               <ul id="salones-slider">
-                <li class="logo-item">
-                  <a href="<?php echo base_url('salon');?>" class="hvr-wobble-horizontal" title="titulo">
-                    <img src="<?php echo base_url('images/salon-1.png');?>" alt="titulo">
+              <?php
+              foreach ($productos_footer as $key => $value) {
+                $imagen_1 = base_url('images/uploads/' . $value['imagen_3'] );
+                $nombre_largo = $value['nombre_largo'];
+                $url_key = base_url('salon/' . $value['url_key']);
+              ?>
+              <li class="logo-item">
+                  <a href="<?php echo $url_key;?>" class="hvr-wobble-horizontal" title="<?php echo $nombre_largo;?>">
+                    <img src="<?php echo $imagen_1;?>" alt="<?php echo $nombre_largo;?>">
                   </a>
-                </li>
-                <li class="logo-item">
-                  <a href="<?php echo base_url('salon');?>" class="hvr-wobble-horizontal" title="titulo">
-                    <img src="<?php echo base_url('images/salon-2.png');?>" alt="titulo">
-                  </a>
-                </li>
-                <li class="logo-item">
-                  <a href="<?php echo base_url('salon');?>" class="hvr-wobble-horizontal" title="titulo">
-                    <img src="<?php echo base_url('images/salon-3.png');?>" alt="titulo">
-                  </a>
-                </li>
-                <li class="logo-item">
-                  <a href="<?php echo base_url('salon');?>" class="hvr-wobble-horizontal" title="titulo">
-                    <img src="<?php echo base_url('images/salon-4.png');?>" alt="titulo">
-                  </a>
-                </li>
-                <li class="logo-item">
-                  <a href="<?php echo base_url('salon');?>" class="hvr-wobble-horizontal" title="titulo">
-                    <img src="<?php echo base_url('images/salon-5.png');?>" alt="titulo">
-                  </a>
-                </li>
-                <li class="logo-item">
-                  <a href="<?php echo base_url('salon');?>" class="hvr-wobble-horizontal" title="titulo">
-                    <img src="<?php echo base_url('images/salon-6.png');?>" alt="titulo">
-                  </a>
-                </li>
-                <li class="logo-item">
-                  <a href="<?php echo base_url('salon');?>" class="hvr-wobble-horizontal" title="titulo">
-                    <img src="<?php echo base_url('images/salon-7.png');?>" alt="titulo">
-                  </a>
-                </li>
-                <li class="logo-item">
-                  <a href="<?php echo base_url('salon');?>" class="hvr-wobble-horizontal" title="titulo">
-                    <img src="<?php echo base_url('images/salon-8.png');?>" alt="titulo">
-                  </a>
-                </li>
-                <li class="logo-item">
-                  <a href="<?php echo base_url('salon');?>" class="hvr-wobble-horizontal" title="titulo">
-                    <img src="<?php echo base_url('images/salon-9.png');?>" alt="titulo">
-                  </a>
-                </li>
+              </li>
+              <?php }?>
               </ul>
+              <?php }?>
             </div>
           </div>
         </div>
@@ -175,6 +148,6 @@ $tag_image = $head_info['image'];
   <script type="text/javascript" src="<?php echo base_url('plugins/jquery-confirm/jquery-confirm.min.js'); ?>"></script>
   <script type="text/javascript" src="<?php echo base_url('plugins/formValidation/formValidation.js'); ?>"></script>
   <script type="text/javascript" src="<?php echo base_url('plugins/formValidation/framework/bootstrap.min.js'); ?>"></script>
-  <script type="text/javascript" src="<?php echo base_url() ?>js/wa-scripts.js"></script>
+  <script type="text/javascript" src="<?php echo base_url() ?>js/wa-scripts.min.js"></script>
 </body>
 </html>

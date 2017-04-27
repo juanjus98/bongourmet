@@ -307,21 +307,6 @@ $('.example21-t-2').on('click', function () {
   //Cargar iterms del carrito
   loadCartItems();
 
-  /*$('#zoom_01').elevateZoom({
-    tint:true, 
-    tintColour:'#D7DCE0',
-    gallery:'gallery_01', 
-    cursor: 'pointer', 
-    galleryActiveClass: 'active', 
-    imageCrossfade: true, 
-    responsive: "true",
-    loadingIcon: base_url + 'images/loading-gallery.gif',
-    zoomWindowFadeIn: 400,
-    zoomWindowFadeOut: 400,
-    lensFadeIn: 400,
-    lensFadeOut: 400,
-    easing : true
-  });*/
 
 /**
  * Lightslider
@@ -520,10 +505,10 @@ function set_cart(data){
 }
 
 /**
- * Validar Formulario #form-cotizar
+ * Validar Formulario #form-contactanos
  */
 //Validar formulario
-$('#form-cotizar').formValidation({
+$('#form-contactanos').formValidation({
   framework: 'bootstrap',
   message: 'Valor no válido.',
         /*icon: {
@@ -532,7 +517,7 @@ $('#form-cotizar').formValidation({
             validating: 'glyphicon glyphicon-refresh'
         },*/
           fields: {
-            nombres: {
+            nombre: {
               row: '.form-group',
               validators: {
                 notEmpty: {

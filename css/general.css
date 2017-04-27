@@ -208,9 +208,9 @@ img {
 .bg-header-login {
   background: #005C97 !important;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to left, #005C97, #363795) !important;
+  background: -webkit-linear-gradient(to left, #005C97, #3c8dbc) !important;
   /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, #005C97, #363795) !important;
+  background: linear-gradient(to left, #005C97, #3c8dbc) !important;
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 .bg-green {
@@ -2711,11 +2711,11 @@ Component: timeline
 /* skin-wa navbar */
 .skin-wa .navbar {
   /*.navbar-variant(@light-blue);*/
-  background: #363795;
+  background: #3c8dbc;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to left, #363795, #005C97);
+  background: -webkit-linear-gradient(to left, #3c8dbc, #005C97);
   /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, #363795, #005C97);
+  background: linear-gradient(to left, #3c8dbc, #005C97);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 .skin-wa .navbar .nav a {

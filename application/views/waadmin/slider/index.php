@@ -1,70 +1,113 @@
 <?php
-//echo '<pre>';
-//print_r($listado);
-//echo '</pre>';
+/*echo '<pre>';
+print_r($listado);
+echo '</pre>';*/
 ?>
 <?php echo msj(); ?>
-<form name="index_form" id="index_form" action="<?php echo base_url(); ?>waadmin/servicios/eliminar" method="post">
-    <div class="panel panel-default wapanel">
-        <div class="panel-heading">
-            <div class="row">
-                <div class="col-md-8 title_panel"><?php echo @$template['title']; ?></div>
-                <div class="col-md-4">
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <form name="frm-buscar" id="frm-buscar" method="post" action="" role="search">
+                    <div class="row pad" style="padding-bottom: 0px;">
 
-                    <!--                    <div class="pull-right">
-                                            <a href="<?php echo base_url(); ?>waadmin/servicios/agregar" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar</a>
-                                            <button type="button" class="btn btn-danger btn-xs btn_eliminar"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Eliminar</button>
-                                        </div>-->
+                        <div class="col-sm-2">
+                            <select name="campo" class="form-control input-sm">
+                                <?php
+                                $campos = array(
+                                    "t1.titulo1" => "Título"
+                                );
+                                foreach ($campos as $indice => $campo) {
+                                    $selected_campo = "";
+                                    if ($post['campo'] == $indice) {
+                                        $selected_campo = "selected";
+                                    }
+                                    echo '<option value="' . $indice . '" ' . $selected_campo . '>' . $campo . '</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="input-group">
+                                <input type="text" name="busqueda" class="form-control input-sm" placeholder="Busqueda" value="<?php if(!empty($post['busqueda'])){ echo $post['busqueda'];} ?>">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-sm btn-primary"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="col-sm-2">
+                            <a href="<?php echo base_url('waadmin/slider/index?refresh');?>" class="btn btn-default btn-sm" title="Restablecer"><i class="fa fa-undo" aria-hidden="true"></i> Restablecer </a>
+                        </div>
+
+                        <div class="col-sm-5">
+                            <div class="pull-right">
+
+                                <!-- <button class="btn btn-success btn-sm"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar </button> -->
+                                <a href="<?php echo base_url('waadmin/slider/editar/C');?>" class="btn btn-success btn-sm" title="Agregar"><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar </a>
+
+                                <a href="#" class="btn btn-danger btn-sm" id="btn-eliminar" title="Eliminar"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div><!-- /.box-header -->
+            <form name="index_form" id="index_form" action="<?php echo base_url(); ?>waadmin/slider/eliminar" method="post">
+                <div class="box-body table-responsive">
+                    <table class="table table-hover table-bordered">
+                        <tbody>
+                            <tr>
+                            <th><input type="checkbox" id="chkTodo" /></th>
+                            <th>Título</th>
+                            <th class="text-center">Imagen</th>
+                            <th class="text-center">Orden</th>
+                            <th></th>
+                            </tr>
+                            <?php
+                            if(!empty($listado)){
+                                foreach ($listado as $key => $item) {
+                                    ?>
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" name="items[]" id="eliminarchk-<?php echo $item['id'] ?>" value="<?php echo $item['id'] ?>" class="chk">
+                                        </td>
+                                        <td><?php echo $item['titulo1']; ?></td>
+                                        <td class="text-center">
+                                        <?php
+                                            $image_url = base_url('images/uploads/' . $item['imagen_1']);
+                                        ?>
+                                        <a href="<?php echo $image_url;?>" target="_blank">
+                                            <img src="<?php echo $image_url;?>" style="max-height:60px;">
+                                        </a>
+                                        </td>
+                                        <td class="text-center"><?php echo $item['orden']; ?></td>
+                                        <td class="text-center">
+                                            <a href="<?php echo base_url(); ?>waadmin/slider/editar/V/<?php echo $item['id']; ?>" class="btn btn-default btn-xs" data-toggle="tooltip" title="Visualizar"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                            <a href="<?php echo base_url(); ?>waadmin/slider/editar/E/<?php echo $item['id']; ?>" class="btn btn-default btn-xs" data-toggle="tooltip" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+
+                                        </td>
+                                    </tr>
+                                    <?php
+                                }
+                            } else {
+                                ?>
+                                <tr>
+                                    <td colspan="6">No se encontro ningún registro.</td>
+                                </tr>
+                                <?php
+                            }
+                            ?>
+
+                        </tbody>
+                    </table>
                 </div>
-            </div>
-        </div>
-        <table class="table table-striped table-bordered table-hover">
-            <thead>
-                <tr>
-                    <!--<th><input type="checkbox" id="chkTodo" /></th>-->
-                    <th>Imágen</th>
-                    <th>Título 1</th>
-                    <th>Título 2</th>
-                    <th>Url</th>
-                    <th>Fecha de creación</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                if (!empty($listado)) {
-                    foreach ($listado as $item) {
-                        ?>
-                        <tr>
-        <!--                            <td>
-                                <input type="checkbox" name="items[]" id="eliminarchk" value="<?php echo $item['id'] ?>" class="chk">
-                            </td>-->
-                            <td><a href="<?php echo base_url();?>images/upload/<?php echo $item['imagen1']; ?>" target="_blank"><?php echo $item['imagen1']; ?></a></td>
-                            <td><?php echo $item['titulo1']; ?></td>
-                            <td><?php echo $item['titulo2']; ?></td>
-                            <td><a href="<?php echo $item['url']; ?>" target="_blank"><?php echo $item['url']; ?></a></td>
-                            <td><?php echo $item['agregar']; ?></td>
-                            <td>
-                                <a href="<?php echo base_url(); ?>waadmin/slider/editar/<?php echo $item['id']; ?>" class="btn btn-default btn-xs" data-toggle="tooltip"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Editar</a>
-                            </td>
-                        </tr>
-                        <?php
-                    }
-                } else {
-                    ?>
-                    <tr><td colspan="6">Sin registros.</td></tr>
+                <div class="pull-right">
                     <?php
-                }
-                ?>
-            </tbody>
-        </table>
-    </div><!--//panel-->
-    <div class="row">
-        <div class="col-lg-12">
-            <?php
-            echo $links;
-            ?> 
-        </div>
+                    echo $links;
+                    ?>
+                </div>
+            </form>
+        </div><!-- /.box -->
     </div>
-</form>
+</div>

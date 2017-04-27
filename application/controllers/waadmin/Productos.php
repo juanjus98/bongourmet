@@ -37,7 +37,7 @@ class Productos extends CI_Controller {
  public function index() {
  //$data['wa_tipo'] = $tipo;
    $data['wa_modulo'] = 'Listado';
-   $data['wa_menu'] = 'Productos';
+   $data['wa_menu'] = 'Salones';
 
  $sessionName = 's_productos'; //Session name
 
@@ -72,17 +72,11 @@ $set_paginacion = set_paginacion($base_url, $per_page, $uri_segment, $num_links,
 $this->pagination->initialize($set_paginacion);
 $data["links"] = $this->pagination->create_links();
 
-$this->template->title('Productos');
+$this->template->title('Salones');
 $this->template->build('waadmin/productos/index', $data);
 }
 
 function editar($tipo='C',$id=NULL){
-   $this->load->library("fileupload");
-   
-   $path = '../../../js/ckfinder';
-   $width = 'auto';
-   $ckEditor = $this->editor($path, $width);
-
    $data['current_url'] = base_url(uri_string());
    $data['back_url'] = base_url('waadmin/productos/index');
    if(isset($id)){
@@ -103,10 +97,8 @@ function editar($tipo='C',$id=NULL){
 
    $data['wa_tipo'] = $tipo;
    $data['wa_modulo'] = $data['tipo'];
-   $data['wa_menu'] = 'Producto';
+   $data['wa_menu'] = 'Salon';
 
-    //Marcas
-   $data['marcas'] = $this->Productos->listar_marcas();
 
    if($tipo == 'E' || $tipo == 'V'){
       $data_row = array('id' => $id);
@@ -119,24 +111,24 @@ function editar($tipo='C',$id=NULL){
 
        $config = array(
            array(
-               'field' => 'categoria_id',
-               'label' => 'Categoría',
-               'rules' => 'required',
-               'errors' => array(
-                   'required' => 'Campo requerido.',
-                   )
-               ),
-           array(
-               'field' => 'nombre_corto',
-               'label' => 'Nombre corto',
-               'rules' => 'required',
-               'errors' => array(
-                   'required' => 'Campo requerido.',
-                   )
-               ),
-           array(
                'field' => 'nombre_largo',
                'label' => 'Nombre largo',
+               'rules' => 'required',
+               'errors' => array(
+                   'required' => 'Campo requerido.',
+                   )
+               ),
+           array(
+               'field' => 'descripcion',
+               'label' => 'Descripción',
+               'rules' => 'required',
+               'errors' => array(
+                   'required' => 'Campo requerido.',
+                   )
+               ),
+           array(
+               'field' => 'orden',
+               'label' => 'Orden',
                'rules' => 'required',
                'errors' => array(
                    'required' => 'Campo requerido.',
@@ -153,42 +145,43 @@ function editar($tipo='C',$id=NULL){
        }else{
 
           //Cargar Imagen
-           if($_FILES["imagen"]){
-               $imagen_info = $this->imaupload->do_upload("/images/uploads", "imagen");
+            $upload_path = $this->config->item('upload_path');
+           if($_FILES["imagen_1"]){
+               $imagen_info1 = $this->imaupload->do_upload($upload_path, "imagen_1");
            }
 
-           $destacar = (isset($post['destacar'])) ? $post['destacar'] : 0 ;
-           $codigo = $this->crearCodigo($post['categoria_id']);
+           if($_FILES["imagen_2"]){
+               $imagen_info2 = $this->imaupload->do_upload($upload_path, "imagen_2");
+           }
+
+           if($_FILES["imagen_3"]){
+               $imagen_info3 = $this->imaupload->do_upload($upload_path, "imagen_3");
+           }
 
            $data_form = array(
-               "codigo" => $codigo,
-               "categoria_id" => $post['categoria_id'],
-               "marca_id" => $post['marca_id'],
-               "nombre_corto" => $post['nombre_corto'],
                "nombre_largo" => $post['nombre_largo'],
-               "resumen" => $post['resumen'],
                "descripcion" => $post['descripcion'],
-               "destacar" => $destacar,
+               "orden" => $post['orden'],
                "keywords" => $post['keywords']
                );
 
           //cargar imágenes
-           /*$imagen_info = $this->imaupload->do_upload("/images/uploads", "imagen");*/
-           if (!empty($imagen_info['upload_data'])) {
-               $data_form['imagen'] = $imagen_info['upload_data']['file_name'];
+           if (!empty($imagen_info1['upload_data'])) {
+               $data_form['imagen_1'] = $imagen_info1['upload_data']['file_name'];
            }
 
-          //Cargar ficha técnica
-           $file_info = $this->fileupload->do_upload("/descargables", "ficha_tecnica");
-           if (!empty($file_info['upload_data'])) {
-               $data_form['ficha_tecnica'] = $file_info['upload_data']['file_name'];
+           if (!empty($imagen_info2['upload_data'])) {
+               $data_form['imagen_2'] = $imagen_info2['upload_data']['file_name'];
+           }
+
+           if (!empty($imagen_info3['upload_data'])) {
+               $data_form['imagen_3'] = $imagen_info3['upload_data']['file_name'];
            }
 
           //Agregar
            if($tipo == 'C'){
                $data_urlkey = array('tipo' => 'p', 'urlkey' => $post['nombre_largo']);
                $url_key = $this->Crud->get_urlkey($data_urlkey);
-               /*$url_key = url_title(convert_accented_characters($post['nombre_largo']),'-', TRUE);*/
                $data_form['url_key'] = $url_key;
 
                $this->db->insert('producto', $data_form);
@@ -209,22 +202,6 @@ function editar($tipo='C',$id=NULL){
                $this->session->set_userdata('msj_success', "Registros actualizados satisfactoriamente.");
            }
 
-          //INSERTAMOS CARACTERISTICAS
-           $this->db->where('producto_id', $producto_id);
-           $this->db->delete('producto_caracteristicas');
-           if (!empty($post['caracteristicas'])) {
-               $caracteristicas = $post['caracteristicas'];
-               foreach ($caracteristicas['titulo'] as $index => $titulo) {
-                   $descripcion = $caracteristicas['descripcion'][$index];
-                   $data_insert_caracteristica = array(
-                       "producto_id" => $producto_id,
-                       "nombre" => $titulo,
-                       "descripcion" => $descripcion
-                       );
-                   $this->db->insert('producto_caracteristicas', $data_insert_caracteristica);
-               }
-           }
-
           //INSERTAMOS ESPECIFICACIONES
            $this->db->where('producto_id', $producto_id);
            $this->db->delete('producto_especificaciones');
@@ -240,9 +217,7 @@ function editar($tipo='C',$id=NULL){
                    $this->db->insert('producto_especificaciones', $data_insert_especificacion);
                }
            }
-
            redirect('/waadmin/productos/index');
-
        }
 
    }
@@ -288,29 +263,6 @@ function editar($tipo='C',$id=NULL){
 
    $this->template->title('Listado de dispositivos.');
    $this->template->build('inicio');
-}
-
-function editor($path, $width) {
-
- //Loading Library For Ckeditor
-
-   $this->load->library('ckeditor');
-
-   $this->load->library('ckfinder');
-
- //configure base path of ckeditor folder 
-
-   $this->ckeditor->basePath = base_url() . 'js/ckeditor/';
-
-   $this->ckeditor->config['toolbar'] = 'Full';
-
-   $this->ckeditor->config['language'] = 'es';
-
-   $this->ckeditor->config['width'] = $width;
-
- //configure ckfinder with ckeditor config 
-
-   $this->ckfinder->SetupCKEditor($this->ckeditor, $path);
 }
 
 /**

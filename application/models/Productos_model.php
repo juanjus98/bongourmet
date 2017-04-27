@@ -61,7 +61,7 @@ class Productos_model extends CI_Model {
         }
 
         $resultado = $this->db->select("t1.*, t2.nombre as categoria_nombre")
-                ->join("categoria as t2","t2.id = t1.categoria_id")
+                ->join("categoria as t2","t2.id = t1.categoria_id","left")
                 ->where($where)
                 ->like($like)
                 ->get("producto as t1")
@@ -110,7 +110,7 @@ class Productos_model extends CI_Model {
         }
 
         $resultado = $this->db->select("t1.*, t2.nombre as categoria_nombre")
-                ->join("categoria as t2","t2.id = t1.categoria_id")
+                ->join("categoria as t2","t2.id = t1.categoria_id","left")
                 ->where($where)
                 ->like($like)
                 ->order_by($order_by)
@@ -143,7 +143,7 @@ class Productos_model extends CI_Model {
         }
 
         $result = $this->db->select("t1.*, t2.nombre as categoria_nombre, t3.nombre as marca_nombre")
-                ->join("categoria as t2","t2.id = t1.categoria_id")
+                ->join("categoria as t2","t2.id = t1.categoria_id","left")
                 ->join("marca as t3","t3.id = t1.marca_id","left")
                 ->where($where)
                 ->get("producto as t1")

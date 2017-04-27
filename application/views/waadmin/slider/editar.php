@@ -1,111 +1,134 @@
 <?php
-//echo '<pre>';
-//print_r($post);
-//echo '</pre>';
+/*echo '<pre>';
+print_r($condominios);
+echo '</pre>';*/
 ?>
-<form name="frm-editar" id="frm-editar" method="post" action="<?php echo base_url(); ?>waadmin/slider/editar/<?php echo $post['id']; ?>" class="form-horizontal" enctype="multipart/form-data">
-    <input type="hidden" name="id" value="<?php echo $post['id']; ?>">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <div class="row">
-                <div class="col-md-8 title_panel"><?php echo @$template['title']; ?></div>
-                <div class="col-md-4">
-                    <div class="pull-right">
-                        <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Guardar</button>
-                        <a href="<?php echo base_url(); ?>waadmin/slider/index" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Cancelar</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="panel-body">
+<div class="row">
+ <div class="col-xs-12">
+   <div class="box">
 
-            <div class="form-group">
-                <label for="imagen1" class="col-sm-2 control-label">Banner top:</label>
-                <div class="col-sm-5">
-                    <input type="file" name="imagen1" id="imagen1" class="form-control" />
-                    <i>1343px * 340px</i>
-                </div>
-                <?php echo form_error('imagen1'); ?>
-            </div>
-            <?php
-            if (!empty($post['imagen1'])) {
-                ?>
-                <div class="form-group">
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-8">
-                        <a href="<?php echo base_url(); ?>images/upload/<?php echo $post['imagen1']; ?>" target="_blank">
-                            <img src="<?php echo base_url(); ?>images/upload/<?php echo $post['imagen1']; ?>" alt="" class="preview-image" />
-                        </a>
-                    </div>
-                </div>
-                <?php
-            }
-            ?>
+     <form class="form-horizontal" name="edit_form" id="edit_form" action="<?php echo $current_url;?>" method="post" role="form">
 
-            <div class="form-group">
-                <label for="titulo1" class="col-sm-2 control-label">Título 1:</label>
-                <div class="col-sm-5">
-                    <input type="text" name="titulo1" id="titulo1" class="form-control"  placeholder="Título 1" value="<?php echo $post['titulo1']; ?>">
-                </div>
-                <?php echo form_error('titulo1'); ?>
-            </div>
+       <?php if($wa_tipo == 'E'){ ?> <input type="hidden" name="id" value="<?php echo $post['id'];?>"><?php }?>
 
-            <div class="form-group">
-                <label for="titulo2" class="col-sm-2 control-label">Título 2:</label>
-                <div class="col-sm-5">
-                    <input type="text" name="titulo2" id="titulo2" class="form-control"  placeholder="Título 2" value="<?php echo $post['titulo2']; ?>">
-                </div>
-                <?php echo form_error('titulo2'); ?>
-            </div>
-            
-            <div class="form-group">
-                <label for="titulo3" class="col-sm-2 control-label">Nombre Url:</label>
-                <div class="col-sm-5">
-                    <input type="text" name="titulo3" id="titulo3" class="form-control"  placeholder="Nombre Url" value="<?php echo $post['titulo3']; ?>">
-                </div>
-                <?php echo form_error('titulo3'); ?>
-            </div>
+       <div class="box-header" style="padding-bottom: 0;">
+         <h3 class="box-title"><?php echo $tipo; ?></h3>
+         <div class="box-tools">
+           <div class="pull-right">
+             <?php
+             if($wa_tipo == 'C' || $wa_tipo == 'E'){
+               ?>
+               <button class="btn btn-success btn-sm"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
+               <?php
+             }
+             if($wa_tipo == 'V'){
+               ?>
+               <a class="btn btn-success btn-sm" title="Editar registro" href="<?php echo $editar_url;?>"><i class="fa fa-pencil" aria-hidden="true"></i> Editar </a>
 
-            <div class="form-group">
-                <label for="url" class="col-sm-2 control-label">Url:</label>
-                <div class="col-sm-5">
-                    <input type="text" name="url" id="url" class="form-control"  placeholder="Url" value="<?php echo $post['url']; ?>">
-                </div>
-                <?php echo form_error('url'); ?>
-            </div>
+               <?php }?>
 
-            <div class="form-group">
-                <label for="target" class="col-sm-2 control-label">Target:</label>
-                <div class="col-sm-5">
-                    <select name="target" class="form-control">
-                        <?php
-                        $targets = array(
-                            "_parent" => "_parent",
-                            "_blank" => "_blank"
-                        );
-                        foreach ($targets as $indice => $target) {
-                            $selected_ = '';
-                            if ($indice == $post['target']) {
-                                $selected_ = 'selected="selected"';
-                            }
-                            ?>
-                            <option value="<?php echo $indice; ?>" <?php echo $selected_; ?>><?php echo $target; ?></option>
-                            <?php
-                        }
-                        ?>
-                    </select>
-                </div>
-                <?php echo form_error('url'); ?>
-            </div>
+               <a href="<?php echo $back_url;?>" class="btn btn-default btn-sm"><i class="fa fa-undo" aria-hidden="true"></i> Cancelar </a>
+             </div>
+           </div> 
+         </div>
 
-            <div class="form-group">
-                <label for="orden" class="col-sm-2 control-label">Orden:</label>
-                <div class="col-sm-5">
-                    <input type="text" name="orden" id="orden" class="form-control"  placeholder="Orden" value="<?php echo $post['orden']; ?>">
-                </div>
-                <?php echo form_error('orden'); ?>
-            </div>
+         <div class="box-body">
+           <div class="row pad" style="padding: 0px;">
+             <fieldset <?php echo $retVal = ($wa_tipo == 'V') ? "disabled" : "";?>>
+               <div class="col-sm-12">
 
-        </div>
-    </div><!--//panel-->
-</form>
+                 <table class="table table-bordered">
+                   <thead class="thead-default">
+                     <tr>
+                       <th colspan="4"><i class="fa fa-list"></i> Información</th>
+                     </tr>
+                   </thead>
+                   <tbody>
+                  <tr>
+                   <td>
+                     <div class="form-group" style="margin-bottom: 0px;">
+                       <label for="titulo1" class="col-sm-2 control-label" style="text-align: right;"> Título:</label>
+                       <div class="col-sm-4">
+                         <input name="titulo1" id="titulo1" type="text" value="<?php echo $retVal = (!empty($post['titulo1'])) ? $post['titulo1'] : '';?>" class="form-control input-sm">
+                         <?php echo form_error('titulo1', '<div class="error">', '</div>'); ?>
+                       </div>
+                       <label for="orden" class="col-sm-2 control-label" style="text-align: right;"> Orden:</label>
+                       <div class="col-sm-4">
+                         <input name="orden" id="orden" type="text" value="<?php echo $retVal = (!empty($post['orden'])) ? $post['orden'] : '';?>" class="form-control input-sm">
+                         <?php echo form_error('orden', '<div class="error">', '</div>'); ?>
+                       </div>
+                     </div>
+                   </td>
+                 </tr>
+               </tbody>
+             </table><br>
+
+             <table class="table table-bordered">
+         <thead class="thead-default">
+           <tr>
+             <th><i class="fa fa-list"></i> Imagen Slide</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr>
+             <td>
+               <div class="form-group" style="margin-bottom: 0px;">
+                 <label for="imagen_1" class="col-sm-2 control-label" style="text-align: right;"><span style="color: red; font-weight: bold;">*</span> Imagen:</label>
+                 <div class="col-sm-10">
+                   <input type="file" name="imagen_1" id="imagen_1" <?php echo $retVal = ($wa_tipo == 'V') ? "disabled" : "";?>>
+                   <?php
+                   if(!empty($post['imagen_1'])){
+                     ?>
+                     <p class="help-block">
+                       <a href="<?php echo base_url('images/uploads/' . $post['imagen_1']);?>" target="_blank">
+                         <img src="<?php echo base_url('images/uploads/' . $post['imagen_1']);?>" style="max-height: 60px;">
+                       </a>
+                     </p>
+                     <?php }?>
+                   </div>
+                 </div>
+               </td>
+             </tr>
+           </tbody>
+         </table><br>
+
+           </div>
+         </fieldset >
+       </div><!--end pad-->
+     </div>
+
+     <div class="box-header">
+       <div class="row pad" style="padding-top: 0px; padding-bottom: 0px;">
+         <div class="col-sm-6">
+
+           <p><span style="color: red; font-weight: bold;"><strong>(*)</strong> Campos obligatorios.</span></p>
+
+         </div>
+         <div class="col-sm-6">
+
+           <div class="pull-right">
+             <?php
+             if($wa_tipo == 'C' || $wa_tipo == 'E'){
+               ?>
+               <button class="btn btn-success btn-sm"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
+               <?php
+             }
+             if($wa_tipo == 'V'){
+               ?>
+               <a class="btn btn-success btn-sm" title="Editar registro" href="<?php echo $editar_url;?>"><i class="fa fa-pencil" aria-hidden="true"></i> Editar </a>
+
+               <?php }?>
+
+               <a href="<?php echo $back_url;?>" class="btn btn-default btn-sm"><i class="fa fa-undo" aria-hidden="true"></i> Cancelar </a>
+             </div>
+
+           </div>
+
+         </div>
+       </div>
+
+     </form>
+
+   </div>
+ </div>
+</div>

@@ -61,9 +61,7 @@ echo '</pre>';*/
                         <tbody>
                             <tr>
                             <th><input type="checkbox" id="chkTodo" /></th>
-                            <th>Código</th>
-                            <th>Categoría</th>
-                            <th>Nombre de Producto</th>
+                            <th>Nombre</th>
                             <th>Slug</th>
                             <th>Fecha de creación</th>
                             <th></th>
@@ -76,18 +74,14 @@ echo '</pre>';*/
                                         <td>
                                             <input type="checkbox" name="items[]" id="eliminarchk-<?php echo $item['id'] ?>" value="<?php echo $item['id'] ?>" class="chk">
                                         </td>
-                                        <td><?php echo $item['codigo']; ?></td>
-                                        <td><?php echo $item['categoria_nombre']; ?></td>
-                                        <td><?php echo $item['nombre_corto']; ?></td>
+                                        <td><?php echo $item['nombre_largo']; ?></td>
                                         <td><?php echo $item['url_key']; ?></td>
                                         <td><?php echo $item['agregar']; ?></td>
                                         <td>
                                             <a href="<?php echo base_url(); ?>waadmin/productos/editar/V/<?php echo $item['id']; ?>" class="btn btn-default btn-xs" data-toggle="tooltip" title="Visualizar"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                             <a href="<?php echo base_url(); ?>waadmin/productos/editar/E/<?php echo $item['id']; ?>" class="btn btn-default btn-xs" data-toggle="tooltip" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 
-                                            <a class="btn btn-info btn-xs wapopup" data-width="800" data-height="500" href="<?php echo base_url(); ?>waadmin/productos_galeria/index/<?php echo $item['id']; ?>" data-toggle="tooltip" title="Galería"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></a>
-
-                                            <!-- <a class="btn btn-default btn-xs wapopup" data-width="670" data-height="500" href="<?php echo base_url(); ?>waadmin/productos_descargables/index/<?php echo $item['id']; ?>" data-toggle="tooltip" title="Descargables"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a> -->
+                                            <!-- <a class="btn btn-info btn-xs wapopup" data-width="800" data-height="500" href="<?php echo base_url(); ?>waadmin/productos_galeria/index/<?php echo $item['id']; ?>" data-toggle="tooltip" title="Galería"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></a> -->
 
                                         </td>
                                     </tr>

@@ -1,3 +1,6 @@
+<?php
+$website_info = $this->website_info;
+?>
 <section>
   <div class="linea-top"><!--Linea amarilla--></div>
   <div class="container-fluid">
@@ -21,16 +24,23 @@
           Somos la exelencia en eventos sociales y corporativos.
         </p>
         <div class="datos-contacto">
-          <span><i class="fa fa-phone" aria-hidden="true"></i> (54) 270528</span><br>
-          <span><i class="fa fa-facebook-official" aria-hidden="true"></i> /BonGourmetEventosyConvenciones</span><br>
-          <span><i class="fa fa-map-marker" aria-hidden="true"></i> Alameda Pardo 123 - Cercado (Ex club Aleman)</span>
+          <span><i class="fa fa-phone" aria-hidden="true"></i> <?php echo $website_info['telefono_1'];?></span><br>
+          <span>
+          <i class="fa fa-facebook-official" aria-hidden="true"></i> /
+          <a href="https://www.facebook.com/<?php echo $website_info['url_facebook'];?>" target="_blank">
+            <?php echo $website_info['url_facebook'];?>
+            </a>
+          </span>
+          <br>
+          <span><i class="fa fa-map-marker" aria-hidden="true"></i> <?php echo $website_info['direccion'];?></span>
         </div>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
         <div class="bg-form">
           <div class="white-line"><!--linea blanca--></div>
           <div class="form">
-            <form>
+            <form name="form-contactanos" id="form-contactanos" action="" method="post">
+            <?php //echo validation_errors(); ?>
             <div class="form-group">
               <label for="nombre">Nombre y Apellidos</label>
               <input type="text" name="nombre" id="nombre" class="form-control">
@@ -40,8 +50,8 @@
               <input type="email" name="email" id="email" class="form-control">
             </div>
             <div class="form-group">
-              <label for="nombre">Celular / Telf.</label>
-              <input type="text" name="nombre" id="nombre" class="form-control">
+              <label for="telefono">Celular / Telf.</label>
+              <input type="text" name="telefono" id="telefono" class="form-control">
             </div>
             <div class="form-group">
               <label for="mensaje">Mensaje</label>

@@ -53,34 +53,18 @@ $route['default_controller'] = 'paginas/index';
 $route['inicio'] = 'paginas/index';
 
 /**
- * Productos
+ * Páginas
  */
 $route['c/(:any)'] = 'paginas/productos/$1';
 $route['c/(:any)/(:num)'] = 'paginas/productos/$1/$2'; //Paginación
 $route['p/(:any)'] = 'paginas/detalle_producto/$1'; //Detalles de un producto
 
 $route['contactanos'] = 'paginas/contactanos';
+$route['confirmacion'] = 'paginas/confirmacion';
+
 $route['salones'] = 'paginas/salones';
-$route['salon'] = 'paginas/salon';
+$route['salon/(:any)'] = 'paginas/salon/$1';
 
-
-/**
- * Shopping cart
- */
-$route['get_cart'] = 'paginas/get_cart';
-$route['set_cart'] = 'paginas/set_cart';
-$route['del_cart'] = 'paginas/del_cart';
-$route['update_cart'] = 'paginas/update_cart';
-
-$route['cotizador'] = 'paginas/cotizador';
-$route['confirmacion/(:any)'] = 'paginas/confirmacion/$1';
-
-
-
-//Autenticar
-$route['autenticar'] = "waadmin/waauth/autenticar";
-/*$route['reset_password'] = "waadmin/auth/reset_password";
-$route['cambiar_contrasena'] = "inicio/cambiar_contrasena";*/
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
@@ -88,9 +72,9 @@ $route['translate_uri_dashes'] = FALSE;
 /*
 * Admin routes
 */
+$route['autenticar'] = "waadmin/waauth/autenticar";
 $route['waadmin'] = "waadmin/waauth";
 $route['waadmin/login'] = "waadmin/waauth";
 $route['waadmin/salir'] = "waadmin/waauth/logout";
 $route['waadmin/perfil/(:any)'] = "waadmin/Waauth/perfil";
-
 $route['waadmin/website/(:any)/(:num)'] = "waadmin/website/editar/$1/$2";

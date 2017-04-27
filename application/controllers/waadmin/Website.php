@@ -24,11 +24,11 @@ class Website extends CI_Controller{
 	}
 
 	function index($tipo='V',$id=1){
-		//$this->editar();
+		$this->editar($tipo,$id);
 	}
 
 	function editar($tipo='V',$id=1){
-		$this->load->library("fileupload");
+		$this->load->library("imaupload");
 
 	   $data['current_url'] = base_url(uri_string());
 	   $data['back_url'] = base_url('waadmin/website/editar/V/' . $id);
@@ -105,17 +105,19 @@ class Website extends CI_Controller{
 				array(
 					'field' => 'email_1',
 					'label' => 'E-mail 1',
-					'rules' => 'required',
+					'rules' => 'required|valid_email',
 					'errors' => array(
 						'required' => 'Campo requerido.',
+						'valid_email' => 'E-mail inválido.',
 						)
 					),
 				array(
 					'field' => 'email_2',
 					'label' => 'E-mail 2',
-					'rules' => 'required',
+					'rules' => 'required|valid_email',
 					'errors' => array(
 						'required' => 'Campo requerido.',
+						'valid_email' => 'E-mail inválido.',
 						)
 					)
 				);
@@ -127,7 +129,7 @@ class Website extends CI_Controller{
 
 			if ($this->form_validation->run() == FALSE){
 				/*Error*/
-				$data['website'] = $post;
+				$data['post'] = $post;
 			}else{
 				//Cargar Imagen
 	           if($_FILES["imagen_1"]){
@@ -141,6 +143,7 @@ class Website extends CI_Controller{
 					'title' => $post['title'], 
 					'description' => $post['description'], 
 					'keywords' => $post['keywords'], 
+					'direccion' => $post['direccion'],
 					'telefono_1' => $post['telefono_1'], 
 					'email_1' => $post['email_1'], 
 					'email_2' => $post['email_2'], 
@@ -162,7 +165,7 @@ class Website extends CI_Controller{
 				$this->Crud->updateRow($data_update);
 				
 				$this->session->set_userdata('msj_success', "Registros actualizados satisfactoriamente.");
-				redirect('admin/website/V/' . $website_id);
+				redirect('waadmin/website/V/' . $website_id);
 
 			}
 

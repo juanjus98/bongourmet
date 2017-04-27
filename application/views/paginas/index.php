@@ -1,17 +1,31 @@
+<?php
+/*echo "<pre>";
+print_r($slider);
+echo "</pre>";*/
+?>
 <section>
   <div class="linea-top"><!--Linea amarilla--></div>
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 clear-padd">
+        <?php
+        if(!empty($slider)){
+        ?>
         <div class="cont_slide_1">
           <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner" role="listbox">
-              <div class="item active">
-                <img src="<?php echo base_url('images/slide/slide001.jpg');?>" alt="Titulo">
+              <?php
+              $ii=0;
+              foreach ($slider as $key => $value) {
+                $ii++;
+                $image_url = base_url('images/uploads/' . $value['imagen_1']);
+              ?>
+              <div class="item <?php echo $active = ($ii==1) ? 'active' : '';?>">
+                <img src="<?php echo $image_url;?>" alt="<?php echo $value['titulo1'];?>">
               </div>
-              <div class="item">
-                <img src="<?php echo base_url('images/slide/slide001.jpg');?>" alt="Titulo">
-              </div>
+              <?php
+              }
+              ?>
             </div>
 
             <!-- Controls -->
@@ -24,8 +38,10 @@
               <span class="sr-only">Next</span>
             </a>
           </div>
-
-        </div>
+        </div><!--//cont_slide_1-->
+        <?php
+        }
+        ?>
       </div>
     </div>
   </div>

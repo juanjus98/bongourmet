@@ -47,93 +47,40 @@ echo '</pre>';*/
                     <tr>
                      <td>
                        <div class="form-group" style="margin-bottom: 0px;">
-                         <label for="codigo" class="col-sm-2 control-label" style="text-align: right;"><span style="color: red; font-weight: bold;">*</span>Código:</label>
-                         <div class="col-sm-4">
-                           <input name="codigo" id="codigo" type="text" value="<?php echo $post['codigo'];?>" class="form-control input-sm" placeholder="Automático" disabled>
-                           <?php echo form_error('codigo', '<div class="error">', '</div>'); ?>
-                         </div>
+                         <label for="nombre_largo" class="col-sm-2 control-label" style="text-align: right;"><span style="color: red; font-weight: bold;">*</span>Nombre:</label>
+                       <div class="col-sm-4">
+                         <input name="nombre_largo" id="nombre_largo" type="text" value="<?php echo $retVal = (!empty($post['nombre_largo'])) ? $post['nombre_largo'] : '';?>" class="form-control input-sm" <?php echo $retVal = ($wa_tipo == 'V') ? "disabled" : "";?>>
+                         <?php echo form_error('nombre_largo', '<div class="error">', '</div>'); ?>
+                       </div>
                          <label for="url_key" class="col-sm-2 control-label" style="text-align: right;"> Slug:</label>
                          <div class="col-sm-4">
-                           <input name="url_key" id="url_key" type="text" value="<?php echo $post['url_key'];?>" class="form-control input-sm" placeholder="Automático" disabled>
+                           <input name="url_key" id="url_key" type="text" value="<?php echo $retVal = (!empty($post['url_key'])) ? $post['url_key'] : '' ; ?>" class="form-control input-sm" placeholder="Automático" disabled>
                          </div>
                        </div>
                      </td>
                    </tr>
-                   <tr>
-                     <td>
-                       <div class="form-group" style="margin-bottom: 0px;">
-                         <label for="categoria_id" class="col-sm-2 control-label" style="text-align: right;"><span style="color: red; font-weight: bold;">*</span> Categoría:</label>
-                         <div class="col-sm-4">
-                           <?php echo select_categorias("categoria_id", "categoria", $post["categoria_id"]);?>
-                           <?php echo form_error('categoria_id', '<div class="error">', '</div>'); ?>
-                         </div>
-                         <label for="marca_id" class="col-sm-2 control-label" style="text-align: right;"> Marca:</label>
-                         <div class="col-sm-4">
-                          <select name="marca_id" id="marca_id" class="form-control">
-                            <!-- <option value="">Seleccione</option> -->
-                            <?php
-                            if (!empty($marcas)) {
-                              foreach ($marcas as $marca) {
-                                $selected = "";
-                                if ($post['marca_id'] == $marca['id']) {
-                                  $selected = "selected";
-                                }
-                                echo '<option value="' . $marca['id'] . '" ' . $selected . '>' . $marca['nombre'] . '</option>';
-                              }
-                            }
-                            ?>
-                          </select>
-                          <?php echo form_error('marca_id', '<div class="error">', '</div>'); ?>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                   <td>
-                     <div class="form-group" style="margin-bottom: 0px;">
-                       <label for="nombre_corto" class="col-sm-2 control-label" style="text-align: right;"><span style="color: red; font-weight: bold;">*</span>Nombre corto:</label>
-                       <div class="col-sm-4">
-                         <input name="nombre_corto" id="nombre_corto" type="text" value="<?php echo $post['nombre_corto'];?>" class="form-control input-sm" <?php echo $retVal = ($wa_tipo == 'V') ? "disabled" : "";?>>
-                         <?php echo form_error('nombre_corto', '<div class="error">', '</div>'); ?>
-                       </div>
-
-                       <label for="nombre_largo" class="col-sm-2 control-label" style="text-align: right;"><span style="color: red; font-weight: bold;">*</span>Nombre Largo:</label>
-                       <div class="col-sm-4">
-                         <input name="nombre_largo" id="nombre_largo" type="text" value="<?php echo $post['nombre_largo'];?>" class="form-control input-sm" <?php echo $retVal = ($wa_tipo == 'V') ? "disabled" : "";?>>
-                         <?php echo form_error('nombre_largo', '<div class="error">', '</div>'); ?>
-                       </div>
-                     </div>
-                   </td>
-                 </tr>
 
                  <tr>
                    <td>
                      <div class="form-group" style="margin-bottom: 0px;">
-                       <label for="resumen" class="col-sm-2 control-label" style="text-align: right;"><span style="color: red; font-weight: bold;">*</span>Resumen:</label>
+                       <label for="descripcion" class="col-sm-2 control-label" style="text-align: right;"><span style="color: red; font-weight: bold;">*</span>Descripción:</label>
                        <div class="col-sm-10">
-                         <textarea name="resumen" id="resumen" class="form-control" rows="3" <?php echo $retVal = ($wa_tipo == 'V') ? "disabled" : "";?>><?php echo $post['resumen'];?></textarea>
+                         <textarea name="descripcion" id="descripcion" class="form-control" rows="3" <?php echo $retVal = ($wa_tipo == 'V') ? "disabled" : "";?>><?php echo $retVal = (!empty($post['descripcion'])) ? $post['descripcion'] : '' ; ?></textarea>
+                         <?php echo form_error('descripcion', '<div class="error">', '</div>'); ?>
                        </div>
                      </div>
                    </td>
                  </tr>
 
-                 <tr>
-                   <td colspan="4" style="vertical-align: middle;">
-                     <div class="form-group" style="margin-bottom: 0px;">
-                       <label for="destacar" class="col-sm-2 control-label" style="text-align: right;">Principal:</label>
-                       <div class="col-sm-4">
-                         <?php
-                         $checked_principal = "";
-                         if($post['destacar'] == 1){
-                          $checked_principal = "checked";
-                        }
-                        ?>
-                        <input class="form-control input-sm" id="destacar" name="destacar" type="checkbox" value="1" <?php echo $checked_principal;?> <?php echo $retVal = ($wa_tipo == 'V') ? "disabled" : "";?>> 
-
-                        <a href="#" style="font-size: 16px;" data-toggle="tooltip" data-placement="right" title="Muestra el producto en el home."><i class="fa fa-question-circle" aria-hidden="true"></i></a>
-                      </div>
-                    </div>
-                  </td>
+                <tr>
+                 <td>
+                   <div class="form-group" style="margin-bottom: 0px;">
+                     <label for="orden" class="col-sm-2 control-label" style="text-align: right;"><span style="color: red; font-weight: bold;">*</span>Orden:</label>
+                   <div class="col-sm-4">
+                     <input name="orden" id="orden" type="text" value="<?php echo $retVal = (!empty($post['orden'])) ? $post['orden'] : '';?>" class="form-control input-sm" <?php echo $retVal = ($wa_tipo == 'V') ? "disabled" : "";?>>
+                     <?php echo form_error('orden', '<div class="error">', '</div>'); ?>
+                   </div>
+                 </td>
                 </tr>
 
                  <tr>
@@ -141,7 +88,7 @@ echo '</pre>';*/
                      <div class="form-group" style="margin-bottom: 0px;">
                        <label for="keywords" class="col-sm-2 control-label" style="text-align: right;">Keywords:</label>
                        <div class="col-sm-10">
-                       <input type="text" name="keywords" id="keywords" data-role="tagsinput" value="<?php echo $post['keywords'];?>" <?php echo $retVal = ($wa_tipo == 'V') ? "disabled" : "";?>>
+                       <input type="text" name="keywords" id="keywords" data-role="tagsinput" value="<?php echo $retVal = (!empty($post['keywords'])) ? $post['keywords'] : '' ; ?>" <?php echo $retVal = ($wa_tipo == 'V') ? "disabled" : "";?>>
                       </div>
                     </div>
                   </td>
@@ -150,36 +97,14 @@ echo '</pre>';*/
               </tbody>
             </table><br>
 
-            <table class="table table-bordered">
-             <thead class="thead-default">
-               <tr>
-                 <th colspan="4"><i class="fa fa-list"></i> Descripción</th>
-               </tr>
-             </thead>
-             <tbody>
-               <tr>
-                 <td>
-                   <div class="form-group" style="margin-bottom: 0px;">
-                     <!-- <label for="resumen" class="col-sm-2 control-label" style="text-align: right;"><span style="color: red; font-weight: bold;">*</span>Descripción:</label> -->
-                     <div class="col-sm-12">
-                       <?php
-                       echo $this->ckeditor->editor('descripcion', $post['descripcion']);
-                       ?>
-                     </div>
-                   </div>
-                 </td>
-               </tr>
-             </tbody>
-           </table><br>
-
            <table class="table table-bordered">
              <thead class="thead-default">
                <tr>
-                 <th colspan="4"><i class="fa fa-list"></i> Especificaciones
+                 <th colspan="4"><i class="fa fa-list"></i> Eventos
 
                    <span class="pull-right">
                     <a href="#" class="btn btn-info btn-xs" id="btn-agregar-especificacion">
-                      Agregar especificación <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                      Agregar<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                     </a>
                   </span>
                 </th>
@@ -194,15 +119,17 @@ echo '</pre>';*/
                       <table class="table">
                         <thead>
                           <tr>
-                            <th>Titulo</th>
-                            <th>Descripción</th>
+                            <th>Eventos</th>
+                            <th>Capacidad</th>
                             <th></th>
                           </tr>
                         </thead>
                         <tbody id="items-especificaciones">
                           <?php
-                          $especificaciones_titulo = $post['especificaciones']['titulo'];
-                          $especificaciones_descripcion = $post['especificaciones']['descripcion'];
+                          /*$especificaciones_titulo = $post['especificaciones']['titulo'];*/
+                          $especificaciones_titulo = (!empty($post['especificaciones']['titulo'])) ? $post['especificaciones']['titulo'] : '' ;
+                          /*$especificaciones_descripcion = $post['especificaciones']['descripcion'];*/
+                          $especificaciones_descripcion = (!empty($post['especificaciones']['descripcion'])) ? $post['especificaciones']['descripcion'] : '' ;
                           if (!empty($especificaciones_titulo)) {
                             foreach ($especificaciones_titulo as $index => $titulo) {
                               ?>
@@ -241,22 +168,22 @@ echo '</pre>';*/
         <table class="table table-bordered">
          <thead class="thead-default">
            <tr>
-             <th><i class="fa fa-list"></i> Imagen</th>
+             <th><i class="fa fa-list"></i> Imagen Slide</th>
            </tr>
          </thead>
          <tbody>
            <tr>
              <td>
                <div class="form-group" style="margin-bottom: 0px;">
-                 <label for="imagen" class="col-sm-2 control-label" style="text-align: right;"><span style="color: red; font-weight: bold;">*</span> Imagen:</label>
+                 <label for="imagen_1" class="col-sm-2 control-label" style="text-align: right;"><span style="color: red; font-weight: bold;">*</span> Imagen:</label>
                  <div class="col-sm-10">
-                   <input type="file" name="imagen" id="imagen" <?php echo $retVal = ($wa_tipo == 'V') ? "disabled" : "";?>>
+                   <input type="file" name="imagen_1" id="imagen_1" <?php echo $retVal = ($wa_tipo == 'V') ? "disabled" : "";?>>
                    <?php
-                   if(!empty($post['imagen'])){
+                   if(!empty($post['imagen_1'])){
                      ?>
                      <p class="help-block">
-                       <a href="<?php echo base_url('images/uploads/' . $post['imagen']);?>" target="_blank">
-                         <img src="<?php echo base_url('images/uploads/' . $post['imagen']);?>" style="max-height: 60px;">
+                       <a href="<?php echo base_url('images/uploads/' . $post['imagen_1']);?>" target="_blank">
+                         <img src="<?php echo base_url('images/uploads/' . $post['imagen_1']);?>" style="max-height: 60px;">
                        </a>
                      </p>
                      <?php }?>
@@ -268,32 +195,64 @@ echo '</pre>';*/
          </table><br>
 
          <table class="table table-bordered">
-           <thead class="thead-default">
-             <tr>
-               <th colspan="4"><i class="fa fa-list"></i> Ficha técnica</th>
-             </tr>
-           </thead>
-           <tbody>
-             <tr>
-               <td>
-                 <div class="form-group" style="margin-bottom: 0px;">
-                   <label for="ficha_tecnica" class="col-sm-2 control-label" style="text-align: right;"><span style="color: red; font-weight: bold;">*</span> Ficha técnica:</label>
-                   <div class="col-sm-10">
-                     <input type="file" name="ficha_tecnica" id="ficha_tecnica" <?php echo $retVal = ($wa_tipo == 'V') ? "disabled" : "";?>>
-                     <?php
-                     if(!empty($post['ficha_tecnica'])){
-                       ?>
-                       <p class="help-block">
-                         <a href="<?php echo base_url('descargables/' . $post['ficha_tecnica']);?>" target="_blank"><?php echo $post['ficha_tecnica'];?>
-                         </a>
-                       </p>
-                       <?php }?>
-                     </div>
+         <thead class="thead-default">
+           <tr>
+             <th><i class="fa fa-list"></i> Logo Principal</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr>
+             <td>
+               <div class="form-group" style="margin-bottom: 0px;">
+                 <label for="imagen_2" class="col-sm-2 control-label" style="text-align: right;"><span style="color: red; font-weight: bold;">*</span> Imagen:</label>
+                 <div class="col-sm-10">
+                   <input type="file" name="imagen_2" id="imagen_2" <?php echo $retVal = ($wa_tipo == 'V') ? "disabled" : "";?>>
+                   <?php
+                   if(!empty($post['imagen_2'])){
+                     ?>
+                     <p class="help-block">
+                       <a href="<?php echo base_url('images/uploads/' . $post['imagen_2']);?>" target="_blank">
+                         <img src="<?php echo base_url('images/uploads/' . $post['imagen_2']);?>" style="max-height: 60px;">
+                       </a>
+                     </p>
+                     <?php }?>
                    </div>
-                 </td>
-               </tr>
-             </tbody>
-           </table>
+                 </div>
+               </td>
+             </tr>
+           </tbody>
+         </table><br>
+
+         <table class="table table-bordered">
+         <thead class="thead-default">
+           <tr>
+             <th><i class="fa fa-list"></i> Logo Footer</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr>
+             <td>
+               <div class="form-group" style="margin-bottom: 0px;">
+                 <label for="imagen_3" class="col-sm-2 control-label" style="text-align: right;"><span style="color: red; font-weight: bold;">*</span> Imagen:</label>
+                 <div class="col-sm-10">
+                   <input type="file" name="imagen_3" id="imagen_3" <?php echo $retVal = ($wa_tipo == 'V') ? "disabled" : "";?>>
+                   <?php
+                   if(!empty($post['imagen_3'])){
+                     ?>
+                     <p class="help-block">
+                       <a href="<?php echo base_url('images/uploads/' . $post['imagen_3']);?>" target="_blank">
+                         <img src="<?php echo base_url('images/uploads/' . $post['imagen_3']);?>" style="max-height: 60px;">
+                       </a>
+                     </p>
+                     <?php }?>
+                   </div>
+                 </div>
+               </td>
+             </tr>
+           </tbody>
+         </table><br>
+
+         
          </div>
        </fieldset >
      </div><!--end pad-->

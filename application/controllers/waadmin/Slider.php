@@ -1,46 +1,68 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
+class Slider extends CI_Controller{
+  private $ctr_name;
+    private $base_ctr; //Url base del controlodor
+    private $primary_table = "slider"; //Tabla principal
+    public $base_title = "Slider";
 
-class Slider extends CI_Controller {
+    public  $user_info;
 
-    function __construct() {
+    function __construct(){
         parent::__construct();
-        $this->load->helper('waadmin');
-        $this->auth->logged_in();
-        $this->load->library("imaupload");
-
-        $this->load->model('waadmin/slider_model', 'Slider');
         $this->template->set_layout('waadmin/intranet.php');
+
+        /**
+         * Verficamos si existe una session activa
+         */
+        $this->auth->logged_in();
+
+        $this->load->model("crud_model","Crud");
+        $this->load->model("slider_model","Slider");
+
+        $this->ctr_name = $this->router->fetch_class();
+    //Base del controlador
+        $this->base_ctr = $this->config->item('admin_path') . '/' . $this->ctr_name;
+        
+        //Información del usuario que ha iniciado session
+        $this->user_info = $this->auth->user_profile();
     }
 
-    /**
-     * Listar Slider
-     *
-     * Muestra el listado de servicios.
-     *
-     * @package		Slider
-     * @author		Juan Julio Sandoval Layza
-     * @copyright   webApu.com
-     * @since		20-05-2015
-     * @version		Version 1.0
-     */
-    public function index() {
-        $data['user_info'] = $this->session->userdata('s_user_info');
+    function index(){
+        /*$data['wa_tipo'] = $tipo;*/
+        $data['wa_modulo'] = 'Listado';
+        $data['wa_menu'] = $this->base_title;
+
+        //URLS
+        $controlador = $this->base_ctr;
+        $data['agregar_url'] = base_url($controlador . '/editar/C');
+        $data['ver_url'] = base_url($controlador . '/editar/V/'); //Adicionar ID
+        $data['editar_url'] = base_url($controlador . '/editar/E/'); //Adicionar ID
+        $data['eliminar_url'] = base_url($controlador . '/eliminar');
+        $data['refresh_url'] = base_url($controlador . '/index?refresh');
+
+        //BUSQUEDA
+        $data['campos_busqueda'] = array(
+            't1.titulo1' => 'Título'
+            );
+
+        $sessionName = 's_' . $this->primary_table; //Session name
+
         //Paginacion
-        $base_url = base_url() . "waadmin/slider/index";
-        $per_page = 5; //registros por página
+        $base_url = base_url($this->base_ctr . '/index');
+        $per_page = 10; //registros por página
         $uri_segment = 4; //segmento de la url
         $num_links = 4; //número de links
         //Página actual
         $page = ($this->uri->segment($uri_segment)) ? $this->uri->segment($uri_segment) : 0;
-        if ($page == 0) {
-            $this->session->unset_userdata('s_post');
+
+        if (isset($_GET['refresh'])) {
+            $this->session->unset_userdata($sessionName);
         }
 
         //Setear post
-        $post = $this->Slider->set_post($this->input->post());
+        $post = $this->Crud->set_post($this->input->post(),$sessionName);
         $data['post'] = $post;
 
         //Total de registros por post
@@ -51,206 +73,153 @@ class Slider extends CI_Controller {
 
         //Paginacion
         $total_rows = $data['total_registros'];
+
         $set_paginacion = set_paginacion($base_url, $per_page, $uri_segment, $num_links, $total_rows);
 
         $this->pagination->initialize($set_paginacion);
         $data["links"] = $this->pagination->create_links();
 
-        $this->template->title('Slider');
-        $this->template->build('waadmin/slider/index', $data);
-    }
 
-    /**
-     * Agregar servicio
-     *
-     * Agregar servicio
-     *
-     * @package		Slider
-     * @author		Juan Julio Sandoval Layza
-     * @copyright   webApu.com
-     * @since		20-05-2015
-     * @version		Version 1.0
-     */
-    public function agregar() {
-        if ($this->input->post()) {
-            $config = array(
-                array(
-                    'field' => 'nombre_corto',
-                    'label' => 'Nombre corto',
-                    'rules' => 'required'
-                ),
-                array(
-                    'field' => 'nombre_largo',
-                    'label' => 'Nombre largo',
-                    'rules' => 'required'
-                ),
-                array(
-                    'field' => 'resumen',
-                    'label' => 'Resumen',
-                    'rules' => 'required'
-                ),
-                array(
-                    'field' => 'descripcion',
-                    'label' => 'Descripción',
-                    'rules' => 'required'
-                )
-            );
-
-            $this->form_validation->set_rules($config);
-            $this->form_validation->set_message('required', '* Campo obligatorio.');
-            $this->form_validation->set_error_delimiters('<div class="col-sm-4 msj-error">', '</div>');
-
-            if ($this->form_validation->run() == FALSE) {
-                $post = $this->input->post();
-                $data['post'] = $post;
-            } else {
-                $post = $this->input->post();
-                $data_insert = array(
-                    "nombre_corto" => $post['nombre_corto'],
-                    "nombre_largo" => $post['nombre_largo'],
-                    "resumen" => $post['resumen'],
-                    "descripcion" => $post['descripcion']
-                );
-
-                //cargar imágenes
-                $imagen1_info = $this->imaupload->do_upload("/images/upload/", "imagen_1");
-                $imagen2_info = $this->imaupload->do_upload("/images/upload/", "imagen_2");
-
-                if (!empty($imagen1_info['upload_data'])) {
-                    $data_insert['imagen_1'] = $imagen1_info['upload_data']['file_name'];
-                }
-
-                if (!empty($imagen2_info['upload_data'])) {
-                    $data_insert['imagen_2'] = $imagen2_info['upload_data']['file_name'];
-                }
-                //Fin cargar imágenes
-
-                $this->db->insert('servicio', $data_insert);
-
-                $this->session->set_userdata('msj_success', "Registro editado satisfactoriamente.");
-                redirect("waadmin/servicios/index");
-            }
+        if ($this->session->userdata("mensaje")) {
+            $data["mensaje"] = $this->session->userdata("mensaje");
+            $this->session->unset_userdata("mensaje");
         }
-        $this->template->title('Agregar servicio');
-        $this->template->build('waadmin/servicios/agregar', $data);
+
+        $this->template->title('Listado ' . $this->base_title);
+        $this->template->build($this->base_ctr . '/index', $data);
     }
 
-    /**
-     * Editar slider
-     *
-     * Editar slider
-     *
-     * @package		Slider
-     * @author		Juan Julio Sandoval Layza
-     * @copyright   webApu.com
-     * @since		20-05-2015
-     * @version		Version 1.0
-     */
-    public function editar($id) {
-        $data['user_info'] = $this->session->userdata('s_user_info');
-        $data['post'] = $this->Slider->get_row($id);
+    function editar($tipo='C',$id=NULL){
+        /*echo $this->base_ctr;*/
+        $data['current_url'] = base_url(uri_string());
+        $data['back_url'] = base_url($this->base_ctr . '/index');
+      
+        if(isset($id)){
+            $data['editar_url'] = base_url($this->base_ctr . '/editar/E/' . $id);
+        }
+
+        switch ($tipo) {
+            case 'C':
+            $data['tipo'] = 'Agregar';
+            break;
+            case 'E':
+            $data['tipo'] = 'Editar';
+            break;
+            case 'V':
+            $data['tipo'] = 'Visualizar';
+            break;
+        }
+
+        $data['wa_tipo'] = $tipo;
+        $data['wa_modulo'] = $data['tipo'];
+        $data['wa_menu'] = 'Unidad';
+
+
+        if($tipo == 'E' || $tipo == 'V'){
+            $result = $this->Slider->get_row($id);
+            $data['post'] = $result;
+        }
+    
         if ($this->input->post()) {
+            $post= $this->input->post();
+            $data['post'] = $post; 
+
             $config = array(
                 array(
                     'field' => 'titulo1',
-                    'label' => 'Titulo 1',
-                    'rules' => 'required'
-                ),
-                array(
-                    'field' => 'titulo2',
-                    'label' => 'Titulo 2',
-                    'rules' => 'required'
-                ),
-                array(
-                    'field' => 'titulo3',
-                    'label' => 'Nombre Url',
-                    'rules' => 'required'
-                ),
-                array(
-                    'field' => 'url',
-                    'label' => 'Url',
-                    'rules' => 'required'
-                )
-            );
+                    'label' => 'Título',
+                    'rules' => 'required',
+                    'errors' => array(
+                        'required' => 'Campo requerido.',
+                        )
+                    )
+                );
 
             $this->form_validation->set_rules($config);
-            $this->form_validation->set_message('required', '* Campo obligatorio.');
-            $this->form_validation->set_error_delimiters('<div class="col-sm-4 msj-error">', '</div>');
+            $this->form_validation->set_error_delimiters('<p class="text-red text-error">', '</p>');
 
-            if ($this->form_validation->run() == FALSE) {
-                $post = $this->input->post();
-                $data['post'] = $post;
-            } else {
-                $post = $this->input->post();
-                $data_update = array(
+            if ($this->form_validation->run() == FALSE){
+                /*Error*/
+                $data['post'] = $this->input->post();
+            }else{
+
+                $data_form = array(
                     "titulo1" => $post['titulo1'],
-                    "titulo2" => $post['titulo2'],
-                    "titulo3" => $post['titulo3'],
-                    "url" => $post['url'],
-                    "target" => $post['target'],
                     "orden" => $post['orden']
                 );
 
+                //Cargar Imagen
+                $upload_path = $this->config->item('upload_path');
+                if($_FILES["imagen_1"]){
+                   $imagen_info1 = $this->imaupload->do_upload($upload_path, "imagen_1");
+                }
+
                 //cargar imágenes
-                $imagen1_info = $this->imaupload->do_upload("/images/upload/", "imagen1");
-
-                if (!empty($imagen1_info['upload_data'])) {
-                    $data_update['imagen1'] = $imagen1_info['upload_data']['file_name'];
+                if (!empty($imagen_info1['upload_data'])) {
+                    $data_form['imagen_1'] = $imagen_info1['upload_data']['file_name'];
                 }
-                //Fin cargar imágenes
 
-                $this->db->where('id', $post['id']);
-                $this->db->update('slider', $data_update);
+                //Agregar
+                if($tipo == 'C'){
+                    $this->db->insert($this->primary_table, $data_form);
+                    $slider_id = $this->db->insert_id();
+                    $this->session->set_userdata('msj_success', "Registro agregado satisfactoriamente.");
+                }
 
-                $this->session->set_userdata('msj_success', "Registro editado satisfactoriamente.");
-                redirect("waadmin/slider/index");
+                //Editar
+                if ($tipo == 'E') {
+                    $this->db->where('id', $post['id']);
+                    $this->db->update($this->primary_table, $data_form);
+                    $slider_id = $post['id'];
+                    $this->session->set_userdata('msj_success', "Registros actualizados satisfactoriamente.");
+                }
+
+                redirect($this->base_ctr . '/index');
+
             }
+
         }
 
-        $this->template->title('Editar slider <b>' . $data['post']['titulo1'] .'</b>');
-        $this->template->build('waadmin/slider/editar', $data);
+        $this->template->title($data['tipo'] . ' Unidad');
+        $this->template->build($this->base_ctr.'/editar', $data);
     }
 
-    /**
-     * Eliminar
-     *
-     * Eliminar categorias
-     *
-     * @package		Dispositivo
-     * @author		Juan Julio Sandoval Layza
-     * @copyright   webApu.com
-     * @since		26-02-2015
-     * @version		Version 1.0
-     */
-    public function eliminar() {
-        if ($this->input->post()) {
-            $items = $this->input->post('items');
-            if (!empty($items)) {
-                foreach ($items as $item) {
-                    $eliminar = date("Y-m-d H:i:s");
-                    $data_eliminar = array(
-                        "eliminar" => $eliminar,
-                        "estado" => 0
-                    );
-                    $this->db->where('id', $item);
-                    $this->db->update('categoria', $data_eliminar);
-                }
-                $this->session->set_userdata('msj_success', "Registros eliminados satisfactoriamente.");
-                redirect("waadmin/categorias");
-            } else {
-                $this->session->set_userdata('msj_error', "Debe seleccionar al menos un registro.");
-                redirect("waadmin/categorias");
-            }
-        } else {
-            $this->session->set_userdata('msj_error', "Debe seleccionar al menos un registro.");
-            redirect("waadmin/categorias");
-        }
+/**
+ * Eliminar
+ *
+ *
+ * @package     Slider
+ * @author      Juan Julio Sandoval Layza
+ * @copyright webApu.com 
+ * @since       26-02-2015
+ * @version     Version 1.0
+ */
+ public function eliminar() {
+   if ($this->input->post()) {
+       $items = $this->input->post('items');
+       if (!empty($items)) {
+           foreach ($items as $item) {
+               $eliminar = date("Y-m-d H:i:s");
+               $data_eliminar = array(
+                   "eliminar" => $eliminar,
+                   "estado" => 0
+                   );
+               $this->db->where('id', $item);
+               $this->db->update($this->primary_table, $data_eliminar);
+           }
+           $this->session->set_userdata('msj_success', "Registros eliminados satisfactoriamente.");
+           redirect($this->base_ctr . "/index");
+       } else {
+           $this->session->set_userdata('msj_error', "Debe seleccionar al menos un registro.");
+           redirect($this->base_ctr . "/index");
+       }
+   } else {
+       $this->session->set_userdata('msj_error', "Debe seleccionar al menos un registro.");
+       redirect($this->base_ctr . "/index");
+   }
 
-        $this->template->title('Listado de dispositivos.');
-        $this->template->build('inicio');
-    }
-
+   $this->template->title('Eliminar.');
+   $this->template->build('inicio');
 }
 
-/* End of file servicios.php */
-/* Location: ./application/controllers/waadmin/categorias.php */
+}

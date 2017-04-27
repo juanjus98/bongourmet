@@ -95,6 +95,12 @@ a:hover {
   font-size: 20px;
   padding-right: 15px;
 }
+.contactanos-page .datos-contacto a {
+  color: #000;
+}
+.contactanos-page .datos-contacto a:hover {
+  color: #ce9919;
+}
 .salones-page {
   /*background:#fda;*/
 }
