@@ -7,10 +7,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  * Carga y procesa una imágen
  *
- * @package		Imaupload
- * @subpackage		Libraries
- * @category		Libraries
- * @author		Juan Julio Sandoval Layza
+ * @package     Imaupload
+ * @subpackage      Libraries
+ * @category        Libraries
+ * @author      Juan Julio Sandoval Layza
  */
 class Imaupload {
 
@@ -34,9 +34,9 @@ class Imaupload {
     /**
      * Upload
      *
-     * @access	public
-     * @param	array
-     * @return	void
+     * @access  public
+     * @param   array
+     * @return  void
      */
     function do_upload($upload_path, $file_name) {
         $config_upload['upload_path'] = dirname($_SERVER["SCRIPT_FILENAME"]) . $upload_path;
@@ -61,7 +61,7 @@ class Imaupload {
     /**
      * Nuevo nombre del archivo
      *
-     * @access	public
+     * @access  public
      */
     function new_filename($file_name) {
         $file_name = $_FILES[$file_name]['name'];

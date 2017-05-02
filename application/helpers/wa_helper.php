@@ -49,7 +49,7 @@ if (!function_exists('wamenu')) {
         $menu = array(
             'inicio' => 'Inicio',
             'contactanos' => 'Contactanos',
-            'galeria' => 'Galería',
+            /*'galeria' => 'Galería',*/
             'salones' => 'Salones',
         );
 
@@ -230,7 +230,7 @@ if (!function_exists('head_info')) {
                     "title" => $info['title'],
                     "description" => strip_tags($info['description']),
                     "keywords" => strip_tags($info['keywords']),
-                    "image" => base_url() . "images/uploads/" . strip_tags($info['image'])
+                    "image" => base_url() . "images/uploads/" . strip_tags($info['imagen_1'])
                     );
                 break;
                 case "salon":

@@ -114,6 +114,15 @@ a:hover {
   max-width: 288px;
   margin: 0 auto;
 }
+.salon-page .logo-salon img {
+  margin: 0 auto;
+}
+.salon-page .btn-galeria a {
+  font-size: 16px;
+  font-weight: 400;
+  color: #ce9919;
+  background: #faeed3;
+}
 .salon-page .description {
   text-align: justify;
   font-size: 12px;
@@ -898,7 +907,7 @@ header .top-sect .cont-redes .btn-facebook:hover {
     /*background: #0dd !important;*/
   }
   .logo-salon {
-    padding: 98px 0;
+    padding: 70px 0 30px 0;
   }
 }
 /* Large devices (large desktops, 1200px and up) */
@@ -907,6 +916,6 @@ header .top-sect .cont-redes .btn-facebook:hover {
     /*background: #00c !important;*/
   }
   .logo-salon {
-    padding: 98px 0;
+    padding: 70px 0 30px 0;
   }
 }

@@ -39,6 +39,9 @@ $tag_image = $head_info['image'];
   <link rel="stylesheet" type="text/css"  href="<?php echo base_url('css/hover.min.css'); ?>"/>
   <link rel="stylesheet" type="text/css"  href="<?php echo base_url('plugins/lightslider/css/lightslider.css'); ?>"/>
   <link rel="stylesheet" type="text/css"  href="<?php echo base_url('plugins/jquery-confirm/jquery-confirm.min.css'); ?>"/>
+
+  <link href="<?php echo base_url('plugins/lightGallery/css/lightgallery.min.css'); ?>" rel="stylesheet">
+
   <!-- <link rel="stylesheet" href="dist/sweetalert.css"> -->
   <!-- <link rel="stylesheet" type="text/css"  href="http://www.elevateweb.co.uk/wp-content/themes/radial/syntax/prism.css"/> -->
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -148,6 +151,24 @@ $tag_image = $head_info['image'];
   <script type="text/javascript" src="<?php echo base_url('plugins/jquery-confirm/jquery-confirm.min.js'); ?>"></script>
   <script type="text/javascript" src="<?php echo base_url('plugins/formValidation/formValidation.js'); ?>"></script>
   <script type="text/javascript" src="<?php echo base_url('plugins/formValidation/framework/bootstrap.min.js'); ?>"></script>
+  <!--Galería-->
+  <?php
+  if(isset($active_gallery)){
+  ?>
+  <script src="<?php echo base_url('plugins/lightGallery/lib/picturefill.min.js'); ?>"></script>
+  <script src="<?php echo base_url('plugins/lightGallery/js/lightgallery.min.js'); ?>"></script>
+  <!-- <script src="<?php echo base_url('plugins/lightGallery/js/lg-fullscreen.js'); ?>"></script> -->
+  <script src="<?php echo base_url('plugins/lightGallery/js/lg-thumbnail.js'); ?>"></script>
+  <!-- <script src="<?php echo base_url('plugins/lightGallery/js/lg-video.js'); ?>"></script> -->
+  <!-- <script src="<?php echo base_url('plugins/lightGallery/js/lg-autoplay.js'); ?>"></script> -->
+  <!-- <script src="<?php echo base_url('plugins/lightGallery/js/lg-zoom.js'); ?>"></script> -->
+  <!-- <script src="<?php echo base_url('plugins/lightGallery/js/lg-hash.js'); ?>"></script> -->
+  <!-- <script src="<?php echo base_url('plugins/lightGallery/js/lg-pager.js'); ?>"></script> -->
+  <script src="<?php echo base_url('plugins/lightGallery/lib/jquery.mousewheel.min.js'); ?>"></script>
+  <?php
+  }
+  ?>
+  <!--//Galería-->
   <script type="text/javascript" src="<?php echo base_url() ?>js/wa-scripts.min.js"></script>
 </body>
 </html>

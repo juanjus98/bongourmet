@@ -6,7 +6,6 @@ echo '</pre>';*/
 <div class="row">
  <div class="col-xs-12">
    <div class="box">
-
      <form class="form-horizontal" name="edit_form" id="edit_form" action="<?php echo $current_url;?>" method="post" role="form" enctype="multipart/form-data">
 
        <?php if($wa_tipo == 'E'){ ?> <input type="hidden" name="id" value="<?php echo $post['id'];?>"><?php }?>

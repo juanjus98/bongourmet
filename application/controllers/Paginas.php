@@ -44,7 +44,7 @@ class Paginas extends CI_Controller {
         $this->template->title('Contáctanos');
         $data['active_link'] = "contactanos";
         $data['website'] = $this->Inicio->get_website(); //siempre
-        $data['head_info'] = $data['website']; //siempre
+        $data['head_info'] = head_info($data['website']); //siempre
 
       //Enviar formulario
         if($this->input->post()){
@@ -167,6 +167,7 @@ class Paginas extends CI_Controller {
 
     public function salones() {
       $this->template->title('Salones');
+
       $data['active_link'] = "salones";
       $data['footer_line'] = "salones";
       $data['website'] = $this->Inicio->get_website();
@@ -185,6 +186,7 @@ class Paginas extends CI_Controller {
     public function salon($url_key=null) {
       $this->template->title('Salon');
       $data['active_link'] = "salones";
+      $data['active_gallery'] = true;
 
       $data['website'] = $this->Inicio->get_website();
       
@@ -203,6 +205,14 @@ class Paginas extends CI_Controller {
       $data_crud['order_by'] = "t1.id Asc";
       $producto_especificaciones = $this->Crud->getRows($data_crud);
       $data['producto_especificaciones'] = $producto_especificaciones;
+
+      //Consultar producto_imagen
+      $data_crud['table'] = "producto_imagen as t1";
+      $data_crud['columns'] = "t1.*";
+      $data_crud['where'] = array("t1.producto_id" => $salon['id'], "t1.estado !=" => 0);
+      $data_crud['order_by'] = "t1.id Asc";
+      $galeria = $this->Crud->getRows($data_crud);
+      $data['galeria'] = $galeria;
 
       $data['head_info'] = head_info($salon,'salon'); //siempre
       $this->template->build('paginas/salon', $data);

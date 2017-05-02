@@ -48,7 +48,7 @@ echo "</pre>";*/
                        <div class="form-group" style="margin-bottom: 0px;">
                          <label for="imagen_titulo" class="col-sm-2 control-label" style="text-align: right;"><span style="color: red; font-weight: bold;">*</span> Título:</label>
                          <div class="col-sm-10">
-                           <input name="imagen_titulo" id="imagen_titulo" type="text" value="<?php echo $post['imagen_titulo'];?>" class="form-control input-sm" <?php echo $retVal = ($wa_tipo == 'V') ? "disabled" : "";?>>
+                           <input name="imagen_titulo" id="imagen_titulo" type="text" value="<?php echo $retVal = (!empty($post['imagen_titulo'])) ? $post['imagen_titulo'] : '';?>" class="form-control input-sm" <?php echo $retVal = ($wa_tipo == 'V') ? "disabled" : "";?>>
                            <?php echo form_error('imagen_titulo', '<div class="error">', '</div>'); ?>
                          </div>
                        </div>

@@ -133,7 +133,8 @@ class Website extends CI_Controller{
 			}else{
 				//Cargar Imagen
 	           if($_FILES["imagen_1"]){
-	               $imagen_info = $this->imaupload->do_upload("/images/uploads", "imagen_1");
+	           	   $upload_path = $this->config->item('upload_path');
+	               $imagen_info = $this->imaupload->do_upload($upload_path, "imagen_1");
 	           }
 
 				//Actualizar website.

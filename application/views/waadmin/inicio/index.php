@@ -10,8 +10,8 @@ $user_info = $this->user_info;
             </div><!-- /.box-header -->
             <div class="box-body">
                 <blockquote>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                    <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+                    <p>Administrador de contenidos para <strong><?php echo $website['title'];?></strong>.</p>
+                    <small><?php echo $website['description'];?></small>
                 </blockquote>
             </div><!-- /.box-body -->
         </div><!-- /.box -->

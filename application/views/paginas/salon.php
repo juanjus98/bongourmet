@@ -23,9 +23,18 @@ $imagen_3 = base_url('images/uploads/' . $salon['imagen_3'] );
   <div class="container-fluid body-page salon-page">
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-        <div class="logo-salon">
+        <div class="logo-salon text-center">
           <img src="<?php echo $imagen_2;?>" class="img-responsive" alt="<?php echo $nombre_largo;?>">
         </div>
+        <?php
+        if(!empty($galeria)){
+        ?>
+        <div class="btn-galeria text-center">
+          <a href="#" class="btn" title="Ver galería"><i class="fa fa-camera-retro" aria-hidden="true"></i> Ver galería</a>
+        </div>
+        <?php
+      }
+        ?>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
         <div class="bg-form">
@@ -57,14 +66,6 @@ $imagen_3 = base_url('images/uploads/' . $salon['imagen_3'] );
                 <td class="text-center"><?php echo $value['descripcion'];?></td>
               </tr>
               <?php }?>
-              <!-- <tr> 
-                <th scope="row" class="text-center">Auditorio</th>
-                <td class="text-center">700</td>
-              </tr>
-              <tr> 
-                <th scope="row" class="text-center">Boda y/o Banquetes</th>
-                <td class="text-center">500</td>
-              </tr> -->
               </tbody> 
               </table>
             </div>
@@ -75,5 +76,25 @@ $imagen_3 = base_url('images/uploads/' . $salon['imagen_3'] );
       </div>
     </div>
   </div>
-  <!--//BODY-->
+<!--Galerìa-->
+<?php
+if(!empty($galeria)){
+?>
+<div id="lightgallery" style="display: none;">
+  <?php
+  foreach ($galeria as $key => $value) {
+    $imagen_file = $value['imagen'];
+  ?>
+  <a href="<?php echo base_url('images/uploads/' . $imagen_file);?>" data-sub-html="<?php echo $value['imagen_titulo'];?>">
+    <img class="img-responsive" src="<?php echo base_url();?>imagens/w200_h200_at__<?php echo $imagen_file;?>">
+  </a>
+  <?php
+}
+  ?>
+</div>
+<?php
+}
+?>
+<!--//Galería-->
+<!--//BODY-->
 </section>

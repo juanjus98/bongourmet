@@ -90,7 +90,7 @@ class Slider extends CI_Controller{
     }
 
     function editar($tipo='C',$id=NULL){
-        /*echo $this->base_ctr;*/
+        $this->load->library("imaupload");
         $data['current_url'] = base_url(uri_string());
         $data['back_url'] = base_url($this->base_ctr . '/index');
       

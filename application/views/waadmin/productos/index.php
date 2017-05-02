@@ -15,8 +15,7 @@ echo '</pre>';*/
                             <select name="campo" class="form-control input-sm">
                                 <?php
                                 $campos = array(
-                                    "t1.codigo" => "Código",
-                                    "t1.nombre_largo" => "Nombre de Producto",
+                                    "t1.nombre_largo" => "Nombre",
                                     "t1.url_key" => "Slug"
                                 );
                                 foreach ($campos as $indice => $campo) {
@@ -63,6 +62,7 @@ echo '</pre>';*/
                             <th><input type="checkbox" id="chkTodo" /></th>
                             <th>Nombre</th>
                             <th>Slug</th>
+                            <th class="text-center">Orden</th>
                             <th>Fecha de creación</th>
                             <th></th>
                             </tr>
@@ -76,12 +76,13 @@ echo '</pre>';*/
                                         </td>
                                         <td><?php echo $item['nombre_largo']; ?></td>
                                         <td><?php echo $item['url_key']; ?></td>
+                                        <td class="text-center"><?php echo $item['orden']; ?></td>
                                         <td><?php echo $item['agregar']; ?></td>
                                         <td>
                                             <a href="<?php echo base_url(); ?>waadmin/productos/editar/V/<?php echo $item['id']; ?>" class="btn btn-default btn-xs" data-toggle="tooltip" title="Visualizar"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                             <a href="<?php echo base_url(); ?>waadmin/productos/editar/E/<?php echo $item['id']; ?>" class="btn btn-default btn-xs" data-toggle="tooltip" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 
-                                            <!-- <a class="btn btn-info btn-xs wapopup" data-width="800" data-height="500" href="<?php echo base_url(); ?>waadmin/productos_galeria/index/<?php echo $item['id']; ?>" data-toggle="tooltip" title="Galería"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></a> -->
+                                            <a class="btn btn-info btn-xs wapopup" data-width="800" data-height="500" href="<?php echo base_url(); ?>waadmin/productos_galeria/index/<?php echo $item['id']; ?>" data-toggle="tooltip" title="Galería"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></a>
 
                                         </td>
                                     </tr>

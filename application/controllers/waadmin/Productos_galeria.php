@@ -141,7 +141,7 @@ function editar($tipo='C',$id=null,$id_relation){
 
   if (!empty($imagen_info['upload_data'])) {
    $data_form['imagen'] = $imagen_info['upload_data']['file_name'];
- }
+  }
 
     //Agregar
  if($tipo == 'C'){
