@@ -218,6 +218,32 @@ class Paginas extends CI_Controller {
       $this->template->build('paginas/salon', $data);
     }
 
+    public function servicio($url_key=null) {
+      $data['active_link'] = "servicios";
+      $data['active_gallery'] = true;
+
+      $data['website'] = $this->Inicio->get_website();
+      
+      //Consultar salón
+      $data_crud['table'] = "servicio as t1";
+      $data_crud['columns'] = "t1.*";
+      $data_crud['where'] = array("t1.url_key" => $url_key, "t1.estado !=" => 0);
+      $servicio = $this->Crud->getRow($data_crud);
+      $data['servicio'] = $servicio;
+
+      //Consultar servicio_detalle
+      $data_crud['table'] = "servicio_detalle as t1";
+      $data_crud['columns'] = "t1.*";
+      $data_crud['where'] = array("t1.servicio_id" => $servicio['id'], "t1.estado !=" => 0);
+      $data_crud['order_by'] = "t1.id Asc";
+      $servicio_detalle = $this->Crud->getRows($data_crud);
+      $data['servicio_detalle'] = $servicio_detalle;
+
+      $data['head_info'] = head_info($servicio,'servicio'); //siempre
+      $this->template->title('Servicio');
+      $this->template->build('paginas/servicio', $data);
+    }
+
 }
 
     /* End of file categorias.php */

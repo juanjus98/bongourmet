@@ -65,6 +65,9 @@ $route['confirmacion'] = 'paginas/confirmacion';
 $route['salones'] = 'paginas/salones';
 $route['salon/(:any)'] = 'paginas/salon/$1';
 
+//Servicio servicio
+$route['servicio/(:any)'] = 'paginas/servicio/$1';
+
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

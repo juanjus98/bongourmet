@@ -44,13 +44,26 @@ if (!function_exists('divideTexto')) {
 if (!function_exists('wamenu')) {
 
     function wamenu() {
-        $CI = & get_instance();
+        $CI= & get_instance();
+        //Categorias de productos
+        $CI->load->model('crud_model', 'Crud');
+
+        $data_crud['table'] = "servicio as t1";
+        $data_crud['columns'] = "t1.*";
+        $data_crud['where'] = array("t1.estado !=" => 0);
+        $data_crud['order_by'] = "t1.orden Asc";
+        $resultado = $CI->Crud->getRows($data_crud);
+
+        foreach ($resultado as $key => $value) {
+            $servicios["servicio/{$value['url_key']}"] = $value['nombre_largo'];
+        }
+
 
         $menu = array(
             'inicio' => 'Inicio',
             'contactanos' => 'Contactanos',
-            /*'galeria' => 'Galería',*/
             'salones' => 'Salones',
+            'servicios' => $servicios
         );
 
         return $menu;
@@ -234,6 +247,14 @@ if (!function_exists('head_info')) {
                     );
                 break;
                 case "salon":
+                $head_info = array(
+                    "title" => $info['nombre_largo'],
+                    "description" => strip_tags(str_replace("\n", "",$info['descripcion'])),
+                    "keywords" => $info['keywords'],
+                    "image" => base_url() . "images/upload/" . $info['imagen_2']
+                    );
+                break;
+                case "servicio":
                 $head_info = array(
                     "title" => $info['nombre_largo'],
                     "description" => strip_tags(str_replace("\n", "",$info['descripcion'])),

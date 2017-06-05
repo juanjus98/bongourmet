@@ -254,7 +254,7 @@ header .top-sect .cont-redes .btn-facebook:hover {
 }
 .navbar-wa .navbar-nav-wa li .dropdown-menu li a:hover {
   color: #fff;
-  background-color: #91132C;
+  background-color: #ce9919;
 }
 .navbar-wa .navbar-nav-wa li .dropdown-menu .active a,
 .navbar-wa .navbar-nav-wa li .dropdown-menu .open a,
@@ -846,6 +846,37 @@ header .top-sect .cont-redes .btn-facebook:hover {
 .bg-form .form .btn-enviar:hover {
   color: #ce9919;
   font-weight: 700;
+}
+.bg-form .servicio {
+  font-family: 'Comfortaa', cursive;
+  /*background:#cd0;*/
+}
+.bg-form .servicio h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #ce9919;
+  text-transform: uppercase;
+}
+.bg-form .servicio p {
+  font-size: 14px;
+  font-weight: 300;
+}
+.bg-form .servicio .servicio-detalles {
+  /*background:#f01;*/
+}
+.bg-form .servicio .servicio-detalles h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ce9919;
+}
+.bg-form .servicio .servicio-detalles p {
+  font-size: 14px;
+  font-weight: 300;
+}
+.bg-form .servicio .servicio-image img {
+  border: solid 1px #ce9919;
+  padding: 3px;
+  margin: 0 auto;
 }
 @media (max-width: 767px) {
   body {
