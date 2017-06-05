@@ -97,7 +97,7 @@ function editar($tipo='C',$id=NULL){
 
    $data['wa_tipo'] = $tipo;
    $data['wa_modulo'] = $data['tipo'];
-   $data['wa_menu'] = 'Salon';
+   $data['wa_menu'] = 'Servicio';
 
 
    if($tipo == 'E' || $tipo == 'V'){
@@ -222,7 +222,7 @@ function editar($tipo='C',$id=NULL){
 
    }
 
-   $this->template->title($data['tipo'] . ' Producto');
+   $this->template->title($data['tipo'] . ' Servicio');
    $this->template->build('waadmin/servicios/editar', $data);
 }
 

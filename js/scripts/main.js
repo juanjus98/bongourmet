@@ -31,6 +31,13 @@ $(function() {
         return false;
     });
 
+    //AGREGAR DETALLES DE UN SERVICIO
+    $(document).on("click", "#btn-agregar-detalle-servicio", function() {
+        var html = '<tr class="row-table-rm"> <td><input type="text" name="detalles[titulo][]" class="form-control input-sm" placeholder="Título"></td><td><textarea name="detalles[descripcion][]" rows="3" class="form-control input-sm" placeholder="Descripción"></textarea></td><td> <a href="#" class="btn btn-danger btn-xs btn-quitar-tr">Quitar <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span></a> </td></tr>';
+        $("#items-servicio").append(html);
+        return false;
+    });
+
     //Cargar popup
     $(document).on("click", ".wapopup", function() {
      var url = $(this).attr('href');

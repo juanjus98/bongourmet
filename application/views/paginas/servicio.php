@@ -54,7 +54,7 @@ $imagen_3 = base_url('images/uploads/' . $servicio['imagen_3'] );
               foreach ($servicio_detalle as $key => $value) {
               ?>
               <h2><?php echo $value['nombre'];?></h2>
-              <p><?php echo $value['descripcion'];?></p>
+              <p><?php echo str_replace("\n","<br>",$value['descripcion']);?></p>
               <?php
             }
               }?>

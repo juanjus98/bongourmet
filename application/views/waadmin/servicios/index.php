@@ -17,7 +17,7 @@ echo '</pre>';*/
                                 $campos = array(
                                     "t1.nombre_largo" => "Nombre",
                                     "t1.url_key" => "Slug"
-                                );
+                                    );
                                 foreach ($campos as $indice => $campo) {
                                     $selected_campo = "";
                                     if ($post['campo'] == $indice) {
@@ -44,10 +44,9 @@ echo '</pre>';*/
                         <div class="col-sm-5">
                             <div class="pull-right">
 
-                                <!-- <button class="btn btn-success btn-sm"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar </button> -->
-                                <a href="<?php echo base_url('waadmin/servicios/editar/C');?>" class="btn btn-success btn-sm" title="Agregar"><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar </a>
+                                <!-- <a href="<?php echo base_url('waadmin/servicios/editar/C');?>" class="btn btn-success btn-sm" title="Agregar"><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar </a> -->
 
-                                <a href="#" class="btn btn-danger btn-sm" id="btn-eliminar" title="Eliminar"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar </a>
+                                <!-- <a href="#" class="btn btn-danger btn-sm" id="btn-eliminar" title="Eliminar"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar </a> -->
 
                             </div>
                         </div>
@@ -59,12 +58,12 @@ echo '</pre>';*/
                     <table class="table table-hover table-bordered">
                         <tbody>
                             <tr>
-                            <th><input type="checkbox" id="chkTodo" /></th>
-                            <th>Nombre</th>
-                            <th>Slug</th>
-                            <th class="text-center">Orden</th>
-                            <th>Fecha de creación</th>
-                            <th></th>
+                                <th><input type="checkbox" id="chkTodo" /></th>
+                                <th>Nombre</th>
+                                <th>Slug</th>
+                                <th class="text-center">Orden</th>
+                                <th>Fecha de creación</th>
+                                <th></th>
                             </tr>
                             <?php
                             if(!empty($listado)){
